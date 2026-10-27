@@ -1,0 +1,535 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="London Calling">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#0e0e0c">
+<title>London Calling 34 · My Lineup</title>
+<meta name="description" content="Build and share your own London Calling schedule · 30 + 31 Oct 2026, Amsterdam">
+<meta property="og:title" content="My London Calling lineup">
+<meta property="og:description" content="30 + 31 Oct 2026 · Paradiso · De Kring · Barlaeus">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,800;0,900;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e0e0c;--panel:#171714;--line:#2a2a25;--text:#f4f1e6;--muted:#9b978a;
+  --lime:#c8dc3c;--red:#ff4d3a;--warn:#ff8a7a;--ppm:2.2px;--tb:64px;
+  --sab:env(safe-area-inset-bottom);--sal:env(safe-area-inset-left);--sar:env(safe-area-inset-right);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:Archivo,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{padding-bottom:var(--sab)}
+a{color:inherit}
+button{font-family:inherit;color:inherit;touch-action:manipulation;-webkit-appearance:none;appearance:none}
+
+/* HERO */
+.hero{max-width:1100px;margin:0 auto;padding:30px max(16px,var(--sar)) 16px max(16px,var(--sal))}
+.kicker{font:500 11px 'JetBrains Mono',ui-monospace,Menlo,monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.hero h1{margin:10px 0 10px;font-weight:900;font-style:italic;font-size:clamp(52px,12vw,116px);line-height:.85;letter-spacing:-.05em;text-transform:uppercase}
+.hero h1 .o{color:transparent;-webkit-text-stroke:2px var(--lime)}
+.badge{display:inline-flex;align-items:center;justify-content:center;width:1.25em;height:1.25em;border-radius:50%;background:var(--red);color:#fff;font-size:.3em;font-style:italic;letter-spacing:0;vertical-align:top;margin-left:.1em}
+.dates{display:inline-block;font:700 13px 'JetBrains Mono',ui-monospace,monospace;background:var(--lime);color:#0e0e0c;padding:5px 10px;border-radius:6px;transform:rotate(-1.5deg)}
+.hero p{color:#cfcabb;max-width:540px;font-size:15px;line-height:1.5;margin:14px 0 0}
+
+/* TOOLBAR */
+.top{position:sticky;top:0;z-index:30;background:rgba(14,14,12,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1100px;margin:0 auto;padding:10px max(12px,var(--sar)) 10px max(12px,var(--sal));display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.tabs{display:flex;gap:3px;background:var(--panel);padding:3px;border-radius:999px;border:1px solid var(--line)}
+.tab{border:0;background:transparent;color:var(--muted);font-weight:700;font-size:13px;padding:9px 13px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.tab.on{background:var(--text);color:var(--bg)}
+.tab .cnt{display:inline-block;min-width:18px;padding:1px 5px;margin-left:4px;border-radius:999px;background:var(--lime);color:#0e0e0c;font-size:11px}
+.actions{display:flex;gap:6px}
+.btn{border:1px solid var(--line);background:var(--panel);color:var(--text);font-weight:700;font-size:13px;padding:9px 12px;border-radius:999px;cursor:pointer;display:inline-flex;gap:6px;align-items:center;text-decoration:none;white-space:nowrap}
+.btn.primary{background:var(--lime);border-color:var(--lime);color:#0e0e0c}
+.btn.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+#nextbar{display:none;max-width:1100px;margin:0 auto;padding:0 max(12px,var(--sar)) 9px max(12px,var(--sal));font-size:12.5px;color:var(--muted);gap:14px;flex-wrap:wrap}
+#nextbar.show{display:flex}
+#nextbar b{color:var(--text)}
+
+main{max-width:1100px;margin:0 auto;padding:12px max(10px,var(--sar)) 40px max(10px,var(--sal))}
+.legend{font-size:12px;color:var(--muted);padding:4px 4px 12px;display:flex;flex-wrap:wrap;gap:14px}
+.legend b{color:var(--text)}
+.banner{display:none;margin:4px 0 14px;padding:12px 14px;border:1px dashed #6e6a5b;border-radius:14px;background:#141410;font-size:14px;align-items:center;gap:10px;flex-wrap:wrap;justify-content:space-between}
+.banner.show{display:flex}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:46px repeat(var(--cols),minmax(0,1fr));column-gap:6px}
+.corner,.stage-h{position:-webkit-sticky;position:sticky;top:var(--tb);z-index:6;background:var(--bg)}
+.stage-h{padding:10px 4px 8px;border-bottom:3px solid var(--c);margin-bottom:6px}
+.stage-h b{display:block;font-weight:900;font-style:italic;font-size:14px;text-transform:uppercase}
+.stage-h span{font-size:11px;color:var(--muted)}
+.gutter,.col{position:relative}
+.hr{position:absolute;right:6px;transform:translateY(-50%);font:500 11px 'JetBrains Mono',ui-monospace,monospace;color:var(--muted)}
+.ln{position:absolute;left:0;right:0;border-top:1px solid var(--line)}
+.ln.half{border-top-style:dashed;opacity:.45}
+.band{position:absolute;left:0;right:0;border-radius:10px;background:repeating-linear-gradient(135deg,#191915 0 8px,#131310 8px 16px);border:1px solid #26261f}
+.band span{position:absolute;bottom:6px;left:8px;font:700 10px 'JetBrains Mono',ui-monospace,monospace;color:#a9a594;text-transform:uppercase;letter-spacing:.06em}
+.act{position:absolute;left:0;right:0;text-align:left;border:0;border-radius:9px;padding:6px 8px;cursor:pointer;overflow:hidden;z-index:2;
+  background:var(--cs);color:var(--text);box-shadow:inset 3px 0 0 var(--c);display:flex;flex-direction:column;gap:1px;
+  -webkit-user-select:none;user-select:none;-webkit-touch-callout:none;transition:transform .12s,background .15s,opacity .2s}
+@media (hover:hover){.act:hover{background:var(--ch);transform:translateY(-1px)}}
+.act:active{transform:scale(.98)}
+.act:focus-visible{outline:2px solid var(--text);outline-offset:1px}
+.act .t{font:500 10.5px 'JetBrains Mono',ui-monospace,monospace;opacity:.75}
+.act .n{font-weight:800;font-size:13.5px;line-height:1.12;padding-right:14px}
+.act .g{font-size:11px;opacity:.7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.act .star{position:absolute;top:5px;right:7px;font-size:13px;opacity:0;transform:scale(.5);transition:.15s}
+.act.picked{background:var(--c);color:#0e0e0c;box-shadow:0 8px 24px -12px var(--c)}
+.act.picked .star{opacity:1;transform:none}
+.act.friend{outline:2px dashed rgba(244,241,230,.8);outline-offset:-2px}
+.act.clash::after{content:'CLASH';position:absolute;bottom:5px;right:6px;font:700 9px 'JetBrains Mono',ui-monospace,monospace;background:#0e0e0c;color:var(--warn);padding:2px 4px;border-radius:4px}
+.act.dim{opacity:.2}
+.event{position:absolute;left:0;right:0;border:1px dashed #4a483f;border-radius:9px;padding:6px 8px;color:var(--muted);background:#121210;z-index:1;overflow:hidden}
+.event b{display:block;color:#d8d4c6;font-size:12px;font-style:italic;text-transform:uppercase}
+.event span{display:block;font-size:10.5px;line-height:1.25}
+.now{position:absolute;left:-3px;right:-3px;height:2px;background:#fff;z-index:4;box-shadow:0 0 10px #fff;pointer-events:none}
+.now em{position:absolute;left:4px;top:-16px;font:700 10px 'JetBrains Mono',ui-monospace,monospace;font-style:normal;color:#fff}
+
+/* INFO */
+.info .k{font:500 11px 'JetBrains Mono',ui-monospace,monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.info h3{margin:4px 0 2px;font-size:24px;font-weight:900;font-style:italic;letter-spacing:-.015em;line-height:1.05;text-transform:uppercase}
+.info .tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--cs);color:var(--c);margin:8px 0 10px}
+.info p{margin:0 0 9px;font-size:14px;line-height:1.55;color:#ddd8ca}
+.info .src{font-size:12px;color:var(--muted)}
+.info .note{margin-top:8px;font-size:12.5px;color:#f2c94c}
+.info .warn{margin-top:8px;font-size:12.5px;color:var(--warn)}
+.tip{position:fixed;z-index:50;width:370px;max-width:calc(100vw - 24px);max-height:72vh;overflow:hidden;background:#1b1b17;border:1px solid #34342c;border-top:3px solid var(--c);border-radius:14px;padding:14px 16px 12px;box-shadow:0 24px 60px -12px rgba(0,0,0,.75);pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .12s,transform .12s}
+.tip.show{opacity:1;transform:none}
+.tip .hint{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted)}
+.sheet-bg{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:60;opacity:0;pointer-events:none;transition:opacity .2s}
+.sheet-bg.show{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;max-width:560px;margin:0 auto;z-index:61;background:#1b1b17;border-top:3px solid var(--c,#444);border-radius:20px 20px 0 0;
+  padding:10px max(18px,var(--sar)) calc(18px + var(--sab)) max(18px,var(--sal));transform:translateY(105%);transition:transform .26s cubic-bezier(.2,.8,.2,1);
+  max-height:85vh;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.sheet.show{transform:none}
+.grab{width:40px;height:5px;border-radius:3px;background:#3a3a32;margin:0 auto 12px}
+.sheet .row{display:flex;gap:8px;margin-top:14px;position:sticky;bottom:0;background:#1b1b17;padding-top:8px}
+.sheet .row .btn{flex:1;justify-content:center;padding:13px;font-size:15px}
+
+/* MY LINEUP */
+.minebar{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 14px}
+.mine{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.daycard{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px 16px 8px}
+.daycard h2{margin:0 0 6px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.daycard h4{margin:16px 0 2px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.item{display:grid;grid-template-columns:96px 1fr auto;gap:10px;align-items:center;padding:11px 0;border-top:1px solid var(--line)}
+.item .tm{font:500 12px 'JetBrains Mono',ui-monospace,monospace}
+.item .nm{font-weight:800;cursor:pointer}
+.item .st{font-size:12px;color:var(--muted);margin-top:2px}
+.item .warn{font-size:12px;color:var(--warn);margin-top:3px}
+.chip{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c);margin-right:6px}
+.both{font:700 10px 'JetBrains Mono',ui-monospace,monospace;color:var(--muted);border:1px dashed #6e6a5b;border-radius:4px;padding:1px 4px;margin-left:4px;vertical-align:2px}
+.gapline{font:500 11px 'JetBrains Mono',ui-monospace,monospace;color:var(--muted);padding:3px 0 3px 106px}
+.x{border:0;background:transparent;color:var(--muted);font-size:22px;cursor:pointer;padding:6px 10px;border-radius:8px}
+.empty{color:var(--muted);font-size:14px;padding:12px 0 14px}
+
+footer{max-width:1100px;margin:0 auto;padding:10px 16px 50px;color:var(--muted);font-size:12px;line-height:1.6}
+.toast{position:fixed;left:50%;bottom:calc(24px + var(--sab));transform:translate(-50%,20px);background:var(--text);color:var(--bg);font-weight:700;font-size:14px;padding:10px 16px;border-radius:999px;opacity:0;transition:.2s;z-index:80;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:640px){
+  :root{--ppm:2px}
+  .hero{padding-top:20px}
+  .hero p{font-size:14px}
+  .grid{grid-template-columns:34px repeat(var(--cols),minmax(0,1fr));column-gap:4px}
+  .hr{font-size:10px;right:3px}
+  .stage-h{padding:8px 2px 6px}
+  .stage-h b{font-size:11px}
+  .stage-h span{display:none}
+  .act{padding:5px 6px}
+  .act .n{font-size:12.5px;padding-right:10px}
+  .act .g{display:none}
+  .act .star{top:4px;right:4px;font-size:11px}
+  .act.clash::after{font-size:8px;bottom:3px;right:3px}
+  .event b{font-size:10.5px}.event span{font-size:9.5px}
+  .tab{padding:9px 10px}
+  .actions .lbl{display:none}
+  .item{grid-template-columns:84px 1fr auto}
+  .gapline{padding-left:94px}
+}
+@media print{
+  .top,.hero p,.banner,.legend,.minebar,.tip,.toast,.sheet,.sheet-bg{display:none!important}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="kicker">Paradiso · De Kring · Barlaeus Gymnasium · Amsterdam</div>
+  <h1>London<br><span class="o">Calling</span><span class="badge">34</span></h1>
+  <div class="dates">30 + 31 OCT 2026</div>
+  <p id="intro">Build your own lineup. Hover an act for its bio, click to ★ it, then share your picks.</p>
+</header>
+
+<div class="top">
+  <div class="top-in">
+    <nav class="tabs">
+      <button class="tab" data-v="fri">Fri 30</button>
+      <button class="tab" data-v="sat">Sat 31</button>
+      <button class="tab" data-v="mine">Mine<span class="cnt" id="count">0</span></button>
+    </nav>
+    <div class="actions">
+      <button class="btn" id="only" title="Dim everything you haven’t picked">◐ <span class="lbl">Only picks</span></button>
+      <button class="btn primary" id="share">↗ <span class="lbl">Share</span></button>
+      <button class="btn" id="clear" title="Clear picks">✕</button>
+    </div>
+  </div>
+  <div id="nextbar"></div>
+</div>
+
+<main>
+  <div class="banner" id="banner"></div>
+  <div id="app"></div>
+</main>
+
+<footer>
+  Times are from the official London Calling 34 timetable (<a href="https://www.londoncalling.nl/timetable/" target="_blank" rel="noopener">londoncalling.nl/timetable</a>). Bios come from <a href="https://www.londoncalling.nl/artists/" target="_blank" rel="noopener">londoncalling.nl/artists</a>. Unofficial fan-made planner for personal use. Check the official timetable for last-minute changes.
+</footer>
+
+<div class="tip info" id="tip"></div>
+<div class="sheet-bg" id="sheetBg"></div>
+<div class="sheet" id="sheet"><div class="grab"></div><div class="info" id="sheetBody"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* Filled in by fetch_bios.py with the official texts. Leave the markers intact. */
+const OFFICIAL_BIOS = /*BIOS*/{}/*/BIOS*/;
+
+const ST = {
+  small:   {name:'Small Hall', sub:'Paradiso', venue:'Paradiso', c:'#ff6a4d', cs:'rgba(255,106,77,.15)', ch:'rgba(255,106,77,.28)'},
+  main:    {name:'Main Hall',  sub:'Paradiso', venue:'Paradiso', c:'#c8dc3c', cs:'rgba(200,220,60,.14)', ch:'rgba(200,220,60,.26)'},
+  kring:   {name:'De Kring',   sub:'Club Up · doors 19:30', venue:'De Kring', c:'#7fb2ff', cs:'rgba(127,178,255,.15)', ch:'rgba(127,178,255,.28)'},
+  barlaeus:{name:'Barlaeus',   sub:'Gymnasium Aula · doors 17:00', venue:'Barlaeus', c:'#7fb2ff', cs:'rgba(127,178,255,.15)', ch:'rgba(127,178,255,.28)'}
+};
+const DAYS = {
+  fri:{short:'Fri 30 Oct',long:'Friday 30 October',date:'2026-10-30',start:'17:50',end:'01:50',
+       stages:['small','main','kring'],
+       events:[{stage:'main',s:'00:30',e:'01:45',title:"We Love 00's",sub:'Halloween club night'}]},
+  sat:{short:'Sat 31 Oct',long:'Saturday 31 October',date:'2026-10-31',start:'12:50',end:'02:20',
+       stages:['small','main','barlaeus'],
+       bands:[{stages:['small','main'],s:'13:00',e:'17:00',label:'High Tea'}],
+       events:[{stage:'main',s:'01:40',e:'02:15',title:'Indiesleaze',sub:'DJ sets: Cutouts + Lazarus Kane + Charlie Avalon'}]}
+};
+const HT = 'Part of the Saturday High Tea (13:00–17:00), which you can also attend with a separate High Tea ticket.';
+const A=(id,name,day,stage,s,e,tag,bio,note,url)=>({id,name,day,stage,s,e,tag,bio,note,url});
+
+/* Fallback summaries (shown until you run fetch_bios.py) */
+const ACTS = [
+ // FRIDAY · Small Hall
+ A('sunday-mourners','Sunday Mourners','fri','small','18:35','19:05','post-punk · freak-folk',"Post-punk from college and childhood friends, mixing freak-folk with shades of Subway Sect and Television: flatwound strings, crisp cymbals, nervy energy."),
+ A('greg-mendez','Greg Mendez','fri','small','19:45','20:15','indie songwriter',"After fifteen years in obscurity, Greg Mendez releases ‘Beauty Land’ on Dead Oceans. Pop melodies and urgent guitars carry a narrator caught between cynicism and hope, grief and love. Recorded mostly in a dim Philadelphia room."),
+ A('hether','Hether','fri','small','20:50','21:20','genre-hopping guitar',"LA guitarist Paul Castelluzzo. He’s self-taught and genre-hopping, and has played everywhere from jazz bars to sessions with Britney Spears, Anderson .Paak and Paul McCartney. Signed to R&R Digital, loves vintage gear."),
+ A('robber-robber','Robber Robber','fri','small','22:00','22:30','post-punk · slacker rock',"Vermont quartet blending post-punk, slacker rock and noisy indie. Album ‘Two Wheels Move the Soul’ tackles displacement, economic pressure and emotional fatigue, yet it’s urgent, melodic and made to dance to."),
+ A('swapmeet','Swapmeet','fri','small','23:10','23:45','jangle · shoegaze · ’90s alt',"Adelaide four-piece mixing jangly indie, fuzzy shoegaze and ’90s alt-rock. They came out of the DIY scene, are signed to US label Winspear and are working on their debut album. Won Emerging Artist and Best Performance at SXSW Sydney."),
+ A('la-securite','La Sécurité','fri','small','00:20','00:50','art-punk · new wave',"Montreal collective playing high-energy art-punk (post-punk, new wave, krautrock) with playful Franglais lyrics and a riot grrrl ethos. Second album ‘Bingo!’ follows debut ‘Stay Safe!’."),
+ A('really-good-time','Really Good Time','fri','small','01:05','01:35','late-night closer',"No bio available yet.","The official Really Good Time page currently shows Robber Robber’s bio by mistake."),
+ // FRIDAY · Main Hall
+ A('zzzahara','Zzzahara','fri','main','18:00','18:35','lo-fi indie · slowcore',"LA artist making hazy lo-fi indie rock between dream pop, slowcore and bedroom pop. Latest album ‘Distant Lands’ deals with grief, addiction, family and ageing: melancholic, yet light."),
+ A('ulrika-spacek','Ulrika Spacek','fri','main','19:05','19:45','art-rock · electronics',"Fourth album ‘EXPO’ mixes uneasy electronics, fractured art-rock and blurred digital textures, about isolation and hyper-individualism. The five-piece works more like a project than a band. Playful, disorienting, intimate."),
+ A('cola','Cola','fri','main','20:15','20:50','minimalist indie rock',"Tim Darcy, Evan Cartwright and Ben Stidworthy. ‘C.O.L.A.’ (Cost of Living Adjustment) pairs minimalism with intricate detail: crisp rhythms, drifting melodies, and lyrics about uncertainty, nostalgia and modern absurdity."),
+ A('cardinals','Cardinals','fri','main','21:20','22:00','gothic shoegaze · folk-pop',"A six-piece from an Irish fishing town that started as a prank by two bored teens and is now part of Cork’s live scene. Led by Euan Manning, they blend pop with gothic shoegaze and Irish traditional folk."),
+ A('victoryland','Victoryland','fri','main','22:30','23:10','adventurous indie pop',"Brooklyn duo making adventurous indie pop with hooks, unusual guitar parts and electronics. Debut ‘My Heart Is A Room With No Cameras In It’ is about love, isolation and longing, and still makes you dance."),
+ A('lip-critic','Lip Critic','fri','main','23:45','00:20','maximalist post-hardcore',"Maximalist post-hardcore through punk, hardcore, hip-hop and electronics. ‘Theft World’ turns singer Bret Kaser’s identity theft into a chaotic concept record: noise, humour, catharsis."),
+ // FRIDAY · De Kring
+ A('katzpascale','KatzPascale','fri','kring','20:00','20:30','cello · sax · experimental pop',"New York duo merging post-punk, neo-classical and experimental pop. Cello, saxophone, loop pedals and voice swing between calm ambience and intense eruptions."),
+ A('tracey-nelson','Tracey Nelson','fri','kring','21:00','21:30','blues-tinged songwriter',"Laid-back, blues-tinged ‘trouble songs’. Debut album ‘Hercules’ was recorded in Asheville and includes ‘Just Shoot Me Now’ and ‘Dollys Coat’."),
+ A('raynor','Raynor','fri','kring','22:00','22:30','melodic indie pop',"A 19-year-old from a Zimbabwean family in Peterborough, making warm, melodic indie pop. He broke through on TikTok and signed to Safelight Records. Singles ‘Brighter Than Before’ and ‘Minute From the Moment’."),
+ // SATURDAY · Small Hall
+ A('fiona-lee','Fiona-Lee','sat','small','14:05','14:35','soaring indie rock',"Yorkshire indie rock with soaring vocals, sharp lyrics and expansive guitars. Songs about anxiety, relationships and identity, often compared to PJ Harvey and Florence Welch.",HT),
+ A('sandhouse','Sandhouse','sat','small','15:10','15:40','psych · trip-hop · alt-rock',"South London duo Anna Sutherland and Caspar Holloway, blending ’60s psychedelia, ’90s alt-rock, trip-hop and electronics. Second EP ‘Pollyanna’ (Broke Records) is out 30 October.",HT+' There is no official London Calling page for Sandhouse (yet), so this summary comes from press coverage.','https://www.londoncalling.nl/artists/'),
+ A('knats','Knats','sat','small','16:20','16:50','jazz fusion',"Newcastle jazz outfit full of Geordie pride, based in London since 2022. They sold out Jazz Re:freshed and have two albums: a self-titled debut on Gearbox and ‘A Great Day In Newcastle’ on Fontana.",HT),
+ A('no-cigar','No Cigar','sat','small','18:30','19:00','psych rock · groove',"Five-piece from Aotearoa mixing psych rock, indie and groove-heavy guitars. Latest album: ‘Under The Surface’."),
+ A('zoh-amba','Zoh Amba','sat','small','19:35','20:05','free jazz · Appalachian folk',"Started as a saxophonist in New York’s avant-garde scene and now writes guitar-driven songs with Tennessee roots: Appalachian folk, free jazz, blues and experimental rock."),
+ A('bloodsports','bloodsports','sat','small','20:35','21:05','post-punk',"Brooklyn post-punk: tense, jagged riffs and driving rhythms. Debut album ‘Anything Can Be A Hammer’."),
+ A('mx-lonely','MX Lonely','sat','small','21:40','22:10','shoegaze · noise rock',"Brooklyn trio fusing shoegaze with post-punk and noise rock, with an Elliott Smith-like ear for songs. Heavy, yet catchy."),
+ A('lots-of-hands','lots of hands','sat','small','23:00','23:30','indie folk · electronics',"Newcastle duo making indie folk with acoustic and electronic textures. Debut ‘into a pretty room’ is about friendship, grief and growing up."),
+ A('tanzana','Tanzana','sat','small','00:05','00:35','trip-hop · alt-rock',"Glasgow band (formed 2023) mixing moody trip-hop with alt-rock. Regulars at SWG3 and King Tut’s."),
+ A('mouth-ulcers','Mouth Ulcers','sat','small','01:10','01:40','dark post-punk',"London quartet playing dark post-punk in the lineage of Bauhaus and The Cure: deep vocals, tribal drums, sharp guitars. Moody yet danceable."),
+ // SATURDAY · Main Hall
+ A('tokyo-tea-room','Tokyo Tea Room','sat','main','13:30','14:05','dream pop',"Margate dream pop with hazy guitars and warm synths. Debut album ‘No Rush’.",HT),
+ A('keiyaa','keiyaA','sat','main','14:35','15:10','experimental R&B',"New York artist making hazy, shape-shifting R&B across neo-soul, jazz, folk and experimental electronics.",HT),
+ A('momo-boyd','Momo Boyd','sat','main','15:40','16:20','cinematic R&B',"New York vocalist, songwriter and producer with roots in gospel, jazz and classical. Formerly of Infinity Song, she now makes warm, cinematic solo R&B and has worked with Kendrick Lamar and Baby Keem.",HT),
+ A('sports','Sports','sat','main','19:00','19:35','warm indie pop',"A decade after their breakthrough, Sports are back to making music for the joy of it. A self-produced, self-titled album of warm, melodic indie pop."),
+ A('my-first-time','My First Time','sat','main','20:00','20:35','post-pop · guitars',"Bristol quartet playing energetic guitar post-pop with big hooks and sharp observations, in the vein of Blur and The Streets."),
+ A('the-gnomes','The Gnomes','sat','main','20:50','21:25','power pop · Merseybeat',"Four-piece from Frankston (Melbourne): Merseybeat, power pop and vintage rock in the vein of The Kinks and The Lemon Twigs."),
+ A('angine-de-poitrine','Angine de Poitrine','sat','main','22:10','23:00','experimental · masked duo',"Canadian duo blending rock, performance art and experimental music. Pulsing drums and looped microtonal guitar, performed anonymously in Dada-inspired masks.","Evening programme only: not included with a High Tea ticket."),
+ A('sex-mask','Sex Mask','sat','main','23:30','00:05','post-punk · alt-rock',"Melbourne three-piece whose post-punk and alt-rock feels like a dream or a half-remembered memory: deliberately vague and instinctive."),
+ A('cutouts','Cutouts','sat','main','00:35','01:10','darkwave · industrial',"Project of Brooklyn’s Alex MacKay (Nation of Language). Darkwave meets indie, industrial and electronics."),
+ // SATURDAY · Barlaeus
+ A('tommy-wa','Tommy WÁ','sat','barlaeus','17:30','18:00','West African folk',"Nigerian-born, Ghana-based artist modernising West African folk with shades of Bon Iver. Now on Dirty Hit."),
+ A('dermot-henry','Dermot Henry','sat','barlaeus','18:30','19:00','alt-folk',"A 23-year-old alt-folk artist with a Laurel Canyon feel, who went from busking in Paris to EP ‘Aiming Torches At The Sun’."),
+ A('arima-ederra','Arima Ederra','sat','barlaeus','19:30','20:00','soul · folk · R&B',"LA singer-songwriter whose album ‘A Rush To Nowhere’ blends soul, R&B, folk and pop, built from years of travel and voice notes."),
+ A('avery-friedman','Avery Friedman','sat','barlaeus','20:30','21:00','indie pop · folk',"Cleveland-born, Brooklyn-based songwriter. Debut ‘New Thing’ explores trauma and queerness."),
+];
+
+const BYID = Object.fromEntries(ACTS.map(a=>[a.id,a]));
+const canHover = matchMedia('(hover:hover) and (pointer:fine)').matches;
+const $ = s=>document.querySelector(s);
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const toMin=t=>{const[h,m]=t.split(':').map(Number);return (h<10?h+24:h)*60+m;};
+const fmt=m=>String(Math.floor(m/60)%24).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
+const ppm=()=>parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ppm'))||2;
+const dayBase=dk=>new Date(DAYS[dk].date+'T00:00:00+01:00').getTime(); // CET (DST ended 25 Oct)
+const abs=(a,hm)=>dayBase(a.day)+toMin(hm)*60000;
+const urlOf=a=>a.url||`https://www.londoncalling.nl/artists/${a.id}/`;
+const byStart=(a,b)=>toMin(a.s)-toMin(b.s);
+const overlap=(a,b)=>a.day===b.day&&toMin(a.s)<toMin(b.e)&&toMin(b.s)<toMin(a.e);
+const paint=(node,st)=>{node.style.setProperty('--c',st.c);node.style.setProperty('--cs',st.cs);node.style.setProperty('--ch',st.ch);};
+
+/* state */
+const KEY='lc34-picks', FKEY='lc34-friend';
+const load=k=>{try{return JSON.parse(localStorage.getItem(k)||'[]');}catch(e){return [];}};
+let picks=new Set(load(KEY).filter(id=>BYID[id]));
+let friend=new Set(load(FKEY).filter(id=>BYID[id]));
+const hm=location.hash.match(/picks=([^&]*)/);
+if(hm){
+  friend=new Set(decodeURIComponent(hm[1]).split(',').filter(id=>BYID[id]));
+  localStorage.setItem(FKEY,JSON.stringify([...friend]));
+  history.replaceState(null,'',location.pathname+location.search); // keep home-screen URL clean
+}
+let onlyPicks=false;
+const t0=Date.now();
+let view=(t0>=new Date('2026-10-31T06:00:00+01:00').getTime()&&t0<new Date('2026-11-01T08:00:00+01:00').getTime())?'sat':'fri';
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify([...picks]));}catch(e){}};
+
+function clashMap(){
+  const m=new Map(), p=ACTS.filter(a=>picks.has(a.id));
+  const add=(x,y)=>{if(!m.has(x.id))m.set(x.id,[]);m.get(x.id).push(y.name);};
+  for(let i=0;i<p.length;i++)for(let j=i+1;j<p.length;j++)if(overlap(p[i],p[j])){add(p[i],p[j]);add(p[j],p[i]);}
+  return m;
+}
+
+function infoHTML(a){
+  const st=ST[a.stage], cl=clashMap(), off=OFFICIAL_BIOS[a.id];
+  const paras=(off||a.bio).split(/\n{2,}/).map(p=>`<p>${esc(p)}</p>`).join('');
+  return `<div class="k">${DAYS[a.day].short} · ${a.s}–${a.e} · ${st.name}</div>
+    <h3>${esc(a.name)}</h3><span class="tag">${a.tag}</span>${paras}
+    <div class="src">${off?'Bio: londoncalling.nl':'Short summary. Full bio on the official page'}</div>
+    ${a.note?`<div class="note">${a.note}</div>`:''}
+    ${picks.has(a.id)&&cl.has(a.id)?`<div class="warn">⚠ Clashes with ${cl.get(a.id).map(esc).join(', ')}</div>`:''}`;
+}
+
+/* desktop tooltip */
+const tip=$('#tip'); let tipFor=null;
+function showTip(a,b){
+  tipFor={a,b}; paint(tip,ST[a.stage]);
+  tip.innerHTML=infoHTML(a)+`<div class="hint">${picks.has(a.id)?'★ In your lineup. Click to remove':'Click to ★ add to your lineup'} · ⌘/Ctrl-click for the artist page</div>`;
+  const r=b.getBoundingClientRect(), w=tip.offsetWidth, h=tip.offsetHeight;
+  let x=r.right+10; if(x+w>innerWidth-12) x=r.left-w-10;
+  let y=r.top;
+  if(x<12){x=Math.max(12,Math.min(innerWidth-w-12,r.left));y=r.bottom+8;if(y+h>innerHeight-12)y=r.top-h-8;}
+  y=Math.max(12,Math.min(y,innerHeight-h-12));
+  tip.style.left=x+'px'; tip.style.top=y+'px'; tip.classList.add('show');
+}
+function hideTip(){tip.classList.remove('show');tipFor=null;}
+addEventListener('scroll',hideTip,{passive:true});
+
+/* touch bottom sheet */
+const sheet=$('#sheet'), sheetBg=$('#sheetBg'), sheetBody=$('#sheetBody');
+function openSheet(a){
+  hideTip(); paint(sheet,ST[a.stage]); paint(sheetBody,ST[a.stage]);
+  sheetBody.innerHTML=infoHTML(a)+`<div class="row"><button class="btn pick"></button><a class="btn" target="_blank" rel="noopener" href="${urlOf(a)}">Artist page ↗</a></div>`;
+  const pb=sheetBody.querySelector('.pick');
+  const upd=()=>{const on=picks.has(a.id);pb.textContent=on?'✓ Picked (tap to remove)':'★ Add to my lineup';pb.classList.toggle('primary',!on);};
+  upd(); pb.onclick=()=>{toggle(a.id);upd();if(view==='mine')render();};
+  sheet.scrollTop=0; sheet.classList.add('show'); sheetBg.classList.add('show');
+  document.documentElement.style.overflow='hidden';
+}
+function closeSheet(){sheet.classList.remove('show');sheetBg.classList.remove('show');document.documentElement.style.overflow='';}
+sheetBg.onclick=closeSheet;
+addEventListener('keydown',e=>{if(e.key==='Escape'){closeSheet();hideTip();}});
+let sy=null;
+sheet.addEventListener('touchstart',e=>{sy=sheet.scrollTop<=0?e.touches[0].clientY:null;},{passive:true});
+sheet.addEventListener('touchmove',e=>{if(sy==null)return;const dy=e.touches[0].clientY-sy;if(dy>0){sheet.style.transition='none';sheet.style.transform=`translateY(${dy}px)`;}},{passive:true});
+sheet.addEventListener('touchend',e=>{if(sy==null)return;const dy=e.changedTouches[0].clientY-sy;sheet.style.transition='';sheet.style.transform='';if(dy>90)closeSheet();sy=null;});
+
+function toggle(id){
+  picks.has(id)?picks.delete(id):picks.add(id);
+  save(); refreshMarks(); renderNext();
+  if(tipFor&&tipFor.a.id===id) showTip(tipFor.a,tipFor.b);
+}
+function refreshMarks(){
+  const cl=clashMap();
+  document.querySelectorAll('.act').forEach(b=>{
+    const id=b.dataset.id;
+    b.classList.toggle('picked',picks.has(id));
+    b.classList.toggle('friend',friend.has(id));
+    b.classList.toggle('clash',cl.has(id));
+    b.classList.toggle('dim',onlyPicks&&!picks.has(id)&&!friend.has(id));
+    b.setAttribute('aria-pressed',picks.has(id));
+  });
+  $('#count').textContent=picks.size;
+}
+
+/* timetable grid */
+function renderGrid(dk){
+  const d=DAYS[dk], g0=toMin(d.start), g1=toMin(d.end), P=ppm(), H=(g1-g0)*P;
+  $('#app').append(el('div','legend',`<span><b>${canHover?'Hover':'Tap'}</b> an act for its bio</span><span><b>${canHover?'Click':'Tap → Add'}</b> to ★ it</span><span><b>Dashed</b> = in a shared lineup</span><span><b>CLASH</b> = overlaps another pick</span>`));
+  const grid=el('div','grid'); grid.style.setProperty('--cols',d.stages.length);
+  grid.append(el('div','corner'));
+  d.stages.forEach(sid=>{const st=ST[sid];const h=el('div','stage-h',`<b>${st.name}</b><span>${st.sub}</span>`);paint(h,st);grid.append(h);});
+  const gut=el('div','gutter'); gut.style.height=H+'px';
+  for(let t=Math.ceil(g0/60)*60;t<g1;t+=60){const l=el('div','hr',fmt(t));l.style.top=(t-g0)*P+'px';gut.append(l);}
+  grid.append(gut);
+  const nowM=(Date.now()-dayBase(dk))/60000, showNow=nowM>=g0&&nowM<=g1;
+  d.stages.forEach((sid,ci)=>{
+    const st=ST[sid], col=el('div','col'); col.style.height=H+'px'; paint(col,st);
+    for(let t=Math.ceil(g0/30)*30;t<=g1;t+=30){const ln=el('div',t%60?'ln half':'ln');ln.style.top=(t-g0)*P+'px';col.append(ln);}
+    (d.bands||[]).filter(b=>b.stages.includes(sid)).forEach(b=>{
+      const bd=el('div','band',`<span>${b.label}</span>`);
+      bd.style.top=(toMin(b.s)-g0)*P+'px'; bd.style.height=(toMin(b.e)-toMin(b.s))*P+'px'; col.append(bd);
+    });
+    (d.events||[]).filter(ev=>ev.stage===sid).forEach(ev=>{
+      const e=el('div','event',`<b>${ev.title}</b><span>${ev.sub}</span>`);
+      e.style.top=((toMin(ev.s)-g0)*P+1)+'px'; e.style.height=((toMin(ev.e)-toMin(ev.s))*P-3)+'px'; col.append(e);
+    });
+    ACTS.filter(a=>a.day===dk&&a.stage===sid).forEach(a=>col.append(block(a,g0,P)));
+    if(showNow){const n=el('div','now',ci===0?'<em>now</em>':'');n.style.top=(nowM-g0)*P+'px';col.append(n);}
+    grid.append(col);
+  });
+  $('#app').append(grid);
+  refreshMarks();
+}
+function block(a,g0,P){
+  const s=toMin(a.s), e=toMin(a.e);
+  const b=el('button','act',`<span class="t">${a.s}–${a.e}</span><span class="n">${esc(a.name)}</span><span class="g">${a.tag}</span><span class="star">★</span>`);
+  b.dataset.id=a.id;
+  b.style.top=((s-g0)*P+1)+'px'; b.style.height=((e-s)*P-3)+'px';
+  b.setAttribute('aria-label',`${a.name}, ${a.s} to ${a.e}, ${ST[a.stage].name}`);
+  if(canHover){
+    b.addEventListener('mouseenter',()=>showTip(a,b));
+    b.addEventListener('mouseleave',hideTip);
+    b.addEventListener('focus',()=>showTip(a,b));
+    b.addEventListener('blur',hideTip);
+    b.addEventListener('click',ev=>{if(ev.metaKey||ev.ctrlKey){window.open(urlOf(a),'_blank');return;}toggle(a.id);});
+  } else b.addEventListener('click',()=>openSheet(a));
+  return b;
+}
+
+/* my lineup */
+function itemRow(a,cl,mode){
+  const st=ST[a.stage], it=el('div','item'); paint(it,st);
+  it.innerHTML=`<div class="tm">${a.s}–${a.e}</div>
+    <div><div class="nm">${esc(a.name)}${mode==='mine'&&friend.has(a.id)?'<span class="both">SHARED ✓</span>':''}</div>
+    <div class="st"><span class="chip"></span>${st.name} · ${a.tag}</div>
+    ${mode==='mine'&&cl.has(a.id)?`<div class="warn">⚠ Overlaps with ${cl.get(a.id).map(esc).join(', ')}</div>`:''}</div>
+    <button class="x" aria-label="${mode==='mine'?'Remove':'Add'}">${mode==='mine'?'×':'+'}</button>`;
+  it.querySelector('.nm').onclick=()=>canHover?window.open(urlOf(a),'_blank'):openSheet(a);
+  it.querySelector('.x').onclick=()=>{mode==='mine'?picks.delete(a.id):picks.add(a.id);save();render();};
+  return it;
+}
+function renderMine(){
+  const bar=el('div','minebar',`<button class="btn primary" data-a="share">↗ Share link</button><button class="btn" data-a="text">⧉ Copy as text</button><button class="btn" data-a="print">⎙ Print</button>`);
+  bar.querySelector('[data-a=share]').onclick=share;
+  bar.querySelector('[data-a=text]').onclick=async()=>{await copy(lineupText());toast('Lineup copied as text');};
+  bar.querySelector('[data-a=print]').onclick=()=>print();
+  const wrap=el('div','mine'), cl=clashMap();
+  ['fri','sat'].forEach(dk=>{
+    const card=el('section','daycard'); card.append(el('h2',null,DAYS[dk].long));
+    const mine=ACTS.filter(a=>a.day===dk&&picks.has(a.id)).sort(byStart);
+    if(!mine.length){const e=el('div','empty',`Nothing picked yet. <a href="#">Open the ${DAYS[dk].short} timetable →</a>`);e.querySelector('a').onclick=ev=>{ev.preventDefault();view=dk;render();scrollTo({top:0});};card.append(e);}
+    mine.forEach((a,i)=>{
+      if(i){
+        const prev=mine[i-1], gap=toMin(a.s)-toMin(prev.e);
+        const move=ST[prev.stage].venue!==ST[a.stage].venue?` · change venue → ${ST[a.stage].venue}`:'';
+        if(gap>=15||move) card.append(el('div','gapline',`· ${Math.max(gap,0)} min free${move}`));
+      }
+      card.append(itemRow(a,cl,'mine'));
+    });
+    const fo=ACTS.filter(a=>a.day===dk&&friend.has(a.id)&&!picks.has(a.id)).sort(byStart);
+    if(fo.length){card.append(el('h4',null,'In the shared lineup, not in yours'));fo.forEach(a=>card.append(itemRow(a,cl,'friend')));}
+    wrap.append(card);
+  });
+  $('#app').append(bar,wrap);
+  $('#count').textContent=picks.size;
+}
+
+/* now / next bar (only during the festival) */
+function renderNext(){
+  const nb=$('#nextbar'), t=Date.now();
+  const live=t>=new Date('2026-10-30T17:00:00+01:00').getTime()&&t<new Date('2026-11-01T03:00:00+01:00').getTime();
+  const list=ACTS.filter(a=>picks.has(a.id)).map(a=>({a,s:abs(a,a.s),e:abs(a,a.e)})).sort((x,y)=>x.s-y.s);
+  const cur=list.find(x=>x.s<=t&&t<x.e), nxt=list.find(x=>x.s>t);
+  if(!live||(!cur&&!nxt)){nb.classList.remove('show');setTB();return;}
+  nb.innerHTML=(cur?`<span>▶ Now: <b>${esc(cur.a.name)}</b> · ${ST[cur.a.stage].name} until ${cur.a.e}</span>`:'')+
+    (nxt?`<span>⏭ Next: <b>${esc(nxt.a.name)}</b> · ${nxt.a.s} ${ST[nxt.a.stage].name} (in ${Math.round((nxt.s-t)/60000)} min)</span>`:'');
+  nb.classList.add('show'); setTB();
+}
+
+/* shared lineup banner */
+function renderBanner(){
+  const bn=$('#banner');
+  if(!friend.size){bn.classList.remove('show');return;}
+  bn.innerHTML=`<span>👥 Shared lineup: <b>${friend.size} acts</b>, shown with a dashed outline.</span>
+    <span style="display:flex;gap:6px"><button class="btn primary" id="adopt">Add all to mine</button><button class="btn" id="dismiss">Hide</button></span>`;
+  bn.classList.add('show');
+  $('#adopt').onclick=()=>{friend.forEach(id=>picks.add(id));save();render();toast('Added to your lineup');};
+  $('#dismiss').onclick=()=>{friend.clear();localStorage.removeItem(FKEY);render();};
+}
+
+/* sharing */
+function lineupText(){
+  let out='My London Calling lineup · 30+31 Oct 2026\n';
+  ['fri','sat'].forEach(dk=>{
+    const m=ACTS.filter(a=>a.day===dk&&picks.has(a.id)).sort(byStart);
+    if(!m.length) return;
+    out+=`\n${DAYS[dk].long.toUpperCase()}\n`;
+    m.forEach(a=>out+=`${a.s}–${a.e}  ${a.name} (${ST[a.stage].name})\n`);
+  });
+  return out;
+}
+const shareUrl=()=>location.href.split('#')[0]+'#picks='+[...picks].join(',');
+async function share(){
+  if(!picks.size){toast('Pick some acts first ★');return;}
+  const url=shareUrl();
+  if(navigator.share){try{await navigator.share({title:'My London Calling lineup',text:lineupText(),url});return;}catch(e){if(e.name==='AbortError')return;}}
+  await copy(url); toast('Link copied. Send it to your friends!');
+}
+async function copy(t){
+  try{await navigator.clipboard.writeText(t);}
+  catch(e){const ta=el('textarea');ta.value=t;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.append(ta);ta.select();ta.setSelectionRange(0,t.length);document.execCommand('copy');ta.remove();}
+}
+let tt; function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2200);}
+
+/* wiring */
+function setTB(){document.documentElement.style.setProperty('--tb',$('.top').offsetHeight+'px');}
+function render(){
+  hideTip();
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.v===view));
+  $('#app').innerHTML='';
+  renderBanner();
+  view==='mine'?renderMine():renderGrid(view);
+}
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{view=t.dataset.v;render();});
+$('#share').onclick=share;
+$('#only').onclick=()=>{onlyPicks=!onlyPicks;$('#only').classList.toggle('on',onlyPicks);refreshMarks();};
+$('#clear').onclick=()=>{if(picks.size&&confirm('Clear all your picks?')){picks.clear();save();render();renderNext();}};
+if(!canHover) $('#intro').textContent='Build your own lineup. Tap an act for its bio and add it to your picks, then share them.';
+let rw=innerWidth;
+addEventListener('resize',()=>{setTB();if(innerWidth!==rw){rw=innerWidth;if(view!=='mine')render();}});
+setTB(); render(); renderNext();
+setInterval(()=>{renderNext();if(view!=='mine'&&!tipFor&&!sheet.classList.contains('show'))render();},60000);
+
+/* home-screen icon (generated) + offline support when hosted */
+(function(){
+  const c=document.createElement('canvas');c.width=c.height=180;const x=c.getContext('2d');
+  x.fillStyle='#c8dc3c';x.fillRect(0,0,180,180);
+  x.fillStyle='#0e0e0c';x.font='italic 900 70px Archivo,-apple-system,sans-serif';x.textAlign='center';x.fillText('LC',84,104);
+  x.fillStyle='#ff4d3a';x.beginPath();x.arc(134,132,28,0,7);x.fill();
+  x.fillStyle='#fff';x.font='italic 800 26px -apple-system,sans-serif';x.fillText('34',134,141);
+  const l=document.createElement('link');l.rel='apple-touch-icon';l.href=c.toDataURL('image/png');document.head.appendChild(l);
+})();
+if('serviceWorker' in navigator&&location.protocol==='https:') navigator.serviceWorker.register('sw.js').catch(()=>{});
+</script>
+</body>
+</html>
