@@ -1,5 +1,4 @@
 
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -31,6 +30,7 @@ body{padding-bottom:var(--sab)}
 a{color:inherit}
 button{font-family:inherit;color:inherit;touch-action:manipulation;-webkit-appearance:none;appearance:none}
 
+/* HERO */
 .hero{max-width:1100px;margin:0 auto;padding:30px max(16px,var(--sar)) 16px max(16px,var(--sal))}
 .kicker{font:500 11px 'JetBrains Mono',ui-monospace,Menlo,monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
 .hero h1{margin:10px 0 10px;font-weight:900;font-style:italic;font-size:clamp(52px,12vw,116px);line-height:.85;letter-spacing:-.05em;text-transform:uppercase}
@@ -39,6 +39,7 @@ button{font-family:inherit;color:inherit;touch-action:manipulation;-webkit-appea
 .dates{display:inline-block;font:700 13px 'JetBrains Mono',ui-monospace,monospace;background:var(--lime);color:#0e0e0c;padding:5px 10px;border-radius:6px;transform:rotate(-1.5deg)}
 .hero p{color:#cfcabb;max-width:540px;font-size:15px;line-height:1.5;margin:14px 0 0}
 
+/* TOOLBAR */
 .top{position:sticky;top:0;z-index:30;background:rgba(14,14,12,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .top-in{max-width:1100px;margin:0 auto;padding:10px max(12px,var(--sar)) 10px max(12px,var(--sal));display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
 .tabs{display:flex;gap:3px;background:var(--panel);padding:3px;border-radius:999px;border:1px solid var(--line)}
@@ -47,11 +48,8 @@ button{font-family:inherit;color:inherit;touch-action:manipulation;-webkit-appea
 .tab .cnt{display:inline-block;min-width:18px;padding:1px 5px;margin-left:4px;border-radius:999px;background:var(--lime);color:#0e0e0c;font-size:11px}
 .actions{display:flex;gap:6px}
 .btn{border:1px solid var(--line);background:var(--panel);color:var(--text);font-weight:700;font-size:13px;padding:9px 12px;border-radius:999px;cursor:pointer;display:inline-flex;gap:6px;align-items:center;text-decoration:none;white-space:nowrap}
-.btn:disabled{opacity:.6}
 .btn.primary{background:var(--lime);border-color:var(--lime);color:#0e0e0c}
 .btn.on{background:var(--text);color:var(--bg);border-color:var(--text)}
-.btn.apple{background:#fa2d48;border-color:#fa2d48;color:#fff}
-.btn.spotify{background:#1db954;border-color:#1db954;color:#04210e}
 #nextbar{display:none;max-width:1100px;margin:0 auto;padding:0 max(12px,var(--sar)) 9px max(12px,var(--sal));font-size:12.5px;color:var(--muted);gap:14px;flex-wrap:wrap}
 #nextbar.show{display:flex}
 #nextbar b{color:var(--text)}
@@ -62,6 +60,7 @@ main{max-width:1100px;margin:0 auto;padding:12px max(10px,var(--sar)) 40px max(1
 .banner{display:none;margin:4px 0 14px;padding:12px 14px;border:1px dashed #6e6a5b;border-radius:14px;background:#141410;font-size:14px;align-items:center;gap:10px;flex-wrap:wrap;justify-content:space-between}
 .banner.show{display:flex}
 
+/* GRID */
 .grid{display:grid;grid-template-columns:46px repeat(var(--cols),minmax(0,1fr));column-gap:6px}
 .corner,.stage-h{position:-webkit-sticky;position:sticky;top:var(--tb);z-index:6;background:var(--bg)}
 .stage-h{padding:10px 4px 8px;border-bottom:3px solid var(--c);margin-bottom:6px}
@@ -94,27 +93,14 @@ main{max-width:1100px;margin:0 auto;padding:12px max(10px,var(--sar)) 40px max(1
 .now{position:absolute;left:-3px;right:-3px;height:2px;background:#fff;z-index:4;box-shadow:0 0 10px #fff;pointer-events:none}
 .now em{position:absolute;left:4px;top:-16px;font:700 10px 'JetBrains Mono',ui-monospace,monospace;font-style:normal;color:#fff}
 
+/* INFO */
 .info .k{font:500 11px 'JetBrains Mono',ui-monospace,monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
 .info h3{margin:4px 0 2px;font-size:24px;font-weight:900;font-style:italic;letter-spacing:-.015em;line-height:1.05;text-transform:uppercase}
-.info .tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--cs);color:var(--c);margin:8px 0 6px}
+.info .tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--cs);color:var(--c);margin:8px 0 10px}
 .info p{margin:0 0 9px;font-size:14px;line-height:1.55;color:#ddd8ca}
-.info .bio{margin-top:12px}
 .info .src{font-size:12px;color:var(--muted)}
 .info .note{margin-top:8px;font-size:12.5px;color:#f2c94c}
 .info .warn{margin-top:8px;font-size:12.5px;color:var(--warn)}
-.info .song{font-size:12.5px;color:var(--muted);margin-top:4px}
-.music{display:flex;gap:12px;align-items:center;margin:12px 0 0;padding:10px;border-radius:14px;background:#24241e;min-height:76px}
-.art{position:relative;width:56px;height:56px;border-radius:8px;flex:none;background:#3a3a32 center/cover no-repeat;border:0;cursor:pointer;padding:0}
-.art::after{content:'▶';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;background:rgba(0,0,0,.35);border-radius:8px}
-.art.playing::after{content:'❚❚';font-size:15px}
-.art:disabled::after{content:'';background:transparent}
-.music .meta{min-width:0;flex:1}
-.music .meta b{display:block;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.music .meta span{font-size:12px;color:var(--muted)}
-.progress{height:3px;background:#3a3a32;border-radius:2px;margin-top:7px;overflow:hidden}
-.progress i{display:block;height:100%;width:0;background:var(--c)}
-.links{display:flex;gap:8px;margin-top:8px}
-.links .btn{flex:1;justify-content:center;padding:11px}
 .tip{position:fixed;z-index:50;width:370px;max-width:calc(100vw - 24px);max-height:72vh;overflow:hidden;background:#1b1b17;border:1px solid #34342c;border-top:3px solid var(--c);border-radius:14px;padding:14px 16px 12px;box-shadow:0 24px 60px -12px rgba(0,0,0,.75);pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .12s,transform .12s}
 .tip.show{opacity:1;transform:none}
 .tip .hint{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted)}
@@ -122,12 +108,13 @@ main{max-width:1100px;margin:0 auto;padding:12px max(10px,var(--sar)) 40px max(1
 .sheet-bg.show{opacity:1;pointer-events:auto}
 .sheet{position:fixed;left:0;right:0;bottom:0;max-width:560px;margin:0 auto;z-index:61;background:#1b1b17;border-top:3px solid var(--c,#444);border-radius:20px 20px 0 0;
   padding:10px max(18px,var(--sar)) calc(18px + var(--sab)) max(18px,var(--sal));transform:translateY(105%);transition:transform .26s cubic-bezier(.2,.8,.2,1);
-  max-height:88vh;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+  max-height:85vh;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 .sheet.show{transform:none}
 .grab{width:40px;height:5px;border-radius:3px;background:#3a3a32;margin:0 auto 12px}
-.sheet .row{display:flex;gap:8px;margin-top:14px;position:sticky;bottom:calc(-18px - var(--sab));background:#1b1b17;padding:8px 0 calc(18px + var(--sab));margin-bottom:calc(-18px - var(--sab))}
+.sheet .row{display:flex;gap:8px;margin-top:14px;position:sticky;bottom:0;background:#1b1b17;padding-top:8px}
 .sheet .row .btn{flex:1;justify-content:center;padding:13px;font-size:15px}
 
+/* MY LINEUP */
 .minebar{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 14px}
 .mine{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
 .daycard{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px 16px 8px}
@@ -168,6 +155,10 @@ footer{max-width:1100px;margin:0 auto;padding:10px 16px 50px;color:var(--muted);
   .item{grid-template-columns:84px 1fr auto}
   .gapline{padding-left:94px}
 }
+@media print{
+  .top,.hero p,.banner,.legend,.minebar,.tip,.toast,.sheet,.sheet-bg{display:none!important}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
 </style>
 </head>
 <body>
@@ -188,8 +179,8 @@ footer{max-width:1100px;margin:0 auto;padding:10px 16px 50px;color:var(--muted);
     </nav>
     <div class="actions">
       <button class="btn" id="only" title="Dim everything you haven’t picked">◐ <span class="lbl">Only picks</span></button>
-      <button class="btn" id="pdf" title="Save as PDF">⤓ <span class="lbl">PDF</span></button>
       <button class="btn primary" id="share">↗ <span class="lbl">Share</span></button>
+      <button class="btn" id="clear" title="Clear picks">✕</button>
     </div>
   </div>
   <div id="nextbar"></div>
@@ -201,8 +192,7 @@ footer{max-width:1100px;margin:0 auto;padding:10px 16px 50px;color:var(--muted);
 </main>
 
 <footer>
-  Times are from the official London Calling 34 timetable (<a href="https://www.londoncalling.nl/timetable/" target="_blank" rel="noopener">londoncalling.nl/timetable</a>). Bios load live from <a href="https://www.londoncalling.nl/artists/" target="_blank" rel="noopener">londoncalling.nl/artists</a>. Songs and previews come from Apple Music. Unofficial fan-made planner for personal use.
-  <br><button class="btn" id="clear" style="margin-top:10px">✕ Clear all picks</button>
+  Times are from the official London Calling 34 timetable (<a href="https://www.londoncalling.nl/timetable/" target="_blank" rel="noopener">londoncalling.nl/timetable</a>). Bios come from <a href="https://www.londoncalling.nl/artists/" target="_blank" rel="noopener">londoncalling.nl/artists</a>. Unofficial fan-made planner for personal use. Check the official timetable for last-minute changes.
 </footer>
 
 <div class="tip info" id="tip"></div>
@@ -211,18 +201,14 @@ footer{max-width:1100px;margin:0 auto;padding:10px 16px 50px;color:var(--muted);
 <div class="toast" id="toast"></div>
 
 <script>
-/* ---------- Optional: force a specific song per act ----------
-   Example: 'sports': {track:'Song name', apple:'https://music.apple.com/…', spotify:'https://open.spotify.com/track/…'} */
-const SONG_OVERRIDES = {};
-
-const JSPDF = 'https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js';
-const READER = 'https://r.jina.ai/';
+/* Filled in by fetch_bios.py with the official texts. Leave the markers intact. */
+const OFFICIAL_BIOS = /*BIOS*/{}/*/BIOS*/;
 
 const ST = {
-  small:   {name:'Small Hall', sub:'Paradiso', venue:'Paradiso', c:'#ff6a4d', cs:'rgba(255,106,77,.15)', ch:'rgba(255,106,77,.28)', rgb:[255,106,77]},
-  main:    {name:'Main Hall',  sub:'Paradiso', venue:'Paradiso', c:'#c8dc3c', cs:'rgba(200,220,60,.14)', ch:'rgba(200,220,60,.26)', rgb:[200,220,60]},
-  kring:   {name:'De Kring',   sub:'Club Up · doors 19:30', venue:'De Kring', c:'#7fb2ff', cs:'rgba(127,178,255,.15)', ch:'rgba(127,178,255,.28)', rgb:[127,178,255]},
-  barlaeus:{name:'Barlaeus',   sub:'Gymnasium Aula · doors 17:00', venue:'Barlaeus', c:'#7fb2ff', cs:'rgba(127,178,255,.15)', ch:'rgba(127,178,255,.28)', rgb:[127,178,255]}
+  small:   {name:'Small Hall', sub:'Paradiso', venue:'Paradiso', c:'#ff6a4d', cs:'rgba(255,106,77,.15)', ch:'rgba(255,106,77,.28)'},
+  main:    {name:'Main Hall',  sub:'Paradiso', venue:'Paradiso', c:'#c8dc3c', cs:'rgba(200,220,60,.14)', ch:'rgba(200,220,60,.26)'},
+  kring:   {name:'De Kring',   sub:'Club Up · doors 19:30', venue:'De Kring', c:'#7fb2ff', cs:'rgba(127,178,255,.15)', ch:'rgba(127,178,255,.28)'},
+  barlaeus:{name:'Barlaeus',   sub:'Gymnasium Aula · doors 17:00', venue:'Barlaeus', c:'#7fb2ff', cs:'rgba(127,178,255,.15)', ch:'rgba(127,178,255,.28)'}
 };
 const DAYS = {
   fri:{short:'Fri 30 Oct',long:'Friday 30 October',date:'2026-10-30',start:'17:50',end:'01:50',
@@ -234,81 +220,87 @@ const DAYS = {
        events:[{stage:'main',s:'01:40',e:'02:15',title:'Indiesleaze',sub:'DJ sets: Cutouts + Lazarus Kane + Charlie Avalon'}]}
 };
 const HT = 'Part of the Saturday High Tea (13:00–17:00), which you can also attend with a separate High Tea ticket.';
-/* A(id, name, day, stage, start, end, tag, summary, {note, url, hint:[album/song titles to identify the right artist], official:false}) */
-const A=(id,name,day,stage,s,e,tag,bio,o={})=>({id,name,day,stage,s,e,tag,bio,...o});
+const A=(id,name,day,stage,s,e,tag,bio,note,url)=>({id,name,day,stage,s,e,tag,bio,note,url});
 
+/* Fallback summaries (shown until you run fetch_bios.py) */
 const ACTS = [
- A('sunday-mourners','Sunday Mourners','fri','small','18:35','19:05','post-punk · freak-folk',"Post-punk from college and childhood friends, mixing freak-folk with shades of Subway Sect and Television."),
- A('greg-mendez','Greg Mendez','fri','small','19:45','20:15','indie songwriter',"After fifteen years in obscurity, Greg Mendez releases ‘Beauty Land’ on Dead Oceans: pop melodies, urgent guitars, grief and love.",{hint:['Beauty Land']}),
- A('hether','Hether','fri','small','20:50','21:20','genre-hopping guitar',"LA guitarist Paul Castelluzzo. He’s self-taught and genre-hopping, and has played sessions for Britney Spears, Anderson .Paak and Paul McCartney."),
- A('robber-robber','Robber Robber','fri','small','22:00','22:30','post-punk · slacker rock',"Vermont quartet blending post-punk, slacker rock and noisy indie. Album: ‘Two Wheels Move the Soul’.",{hint:['Two Wheels Move the Soul']}),
- A('swapmeet','Swapmeet','fri','small','23:10','23:45','jangle · shoegaze · ’90s alt',"Adelaide four-piece mixing jangly indie, fuzzy shoegaze and ’90s alt-rock. Signed to Winspear."),
- A('la-securite','La Sécurité','fri','small','00:20','00:50','art-punk · new wave',"Montreal art-punk collective with Franglais lyrics and a riot grrrl ethos. New album ‘Bingo!’.",{hint:['Bingo','Stay Safe']}),
- A('really-good-time','Really Good Time','fri','small','01:05','01:35','late-night closer',"No bio available yet.",{note:'The official Really Good Time page currently shows Robber Robber’s bio by mistake.'}),
- A('zzzahara','Zzzahara','fri','main','18:00','18:35','lo-fi indie · slowcore',"LA artist making hazy lo-fi indie rock. Latest album: ‘Distant Lands’.",{hint:['Distant Lands']}),
- A('ulrika-spacek','Ulrika Spacek','fri','main','19:05','19:45','art-rock · electronics',"Fourth album ‘EXPO’ mixes uneasy electronics, fractured art-rock and blurred digital textures.",{hint:['EXPO','Modern English Decoration','The Album Paranoia']}),
- A('cola','Cola','fri','main','20:15','20:50','minimalist indie rock',"Tim Darcy, Evan Cartwright and Ben Stidworthy. New album: ‘C.O.L.A.’.",{hint:['Deep in View','The Gloss','C.O.L.A']}),
- A('cardinals','Cardinals','fri','main','21:20','22:00','gothic shoegaze · folk-pop',"A Cork six-piece blending pop with gothic shoegaze and Irish traditional folk.",{hint:['St Agnes','Anhedonia','If I Could Make You Care','Masquerade','She Makes Me Real']}),
- A('victoryland','Victoryland','fri','main','22:30','23:10','adventurous indie pop',"Brooklyn duo making adventurous indie pop. Debut: ‘My Heart Is A Room With No Cameras In It’.",{hint:['My Heart Is A Room']}),
- A('lip-critic','Lip Critic','fri','main','23:45','00:20','maximalist post-hardcore',"Maximalist post-hardcore through punk, hip-hop and electronics. New album: ‘Theft World’.",{hint:['Theft World','Hex Dealer']}),
- A('katzpascale','KatzPascale','fri','kring','20:00','20:30','cello · sax · experimental pop',"New York duo merging post-punk, neo-classical and experimental pop."),
- A('tracey-nelson','Tracey Nelson','fri','kring','21:00','21:30','blues-tinged songwriter',"Laid-back, blues-tinged ‘trouble songs’. Debut album: ‘Hercules’.",{hint:['Hercules','Just Shoot Me Now']}),
- A('raynor','Raynor','fri','kring','22:00','22:30','melodic indie pop',"19-year-old from Peterborough making warm, melodic indie pop.",{hint:['Brighter Than Before','Minute From the Moment']}),
- A('fiona-lee','Fiona-Lee','sat','small','14:05','14:35','soaring indie rock',"Yorkshire indie rock with soaring vocals and sharp lyrics.",{note:HT}),
- A('sandhouse','Sandhouse','sat','small','15:10','15:40','psych · trip-hop · alt-rock',"South London duo Anna Sutherland and Caspar Holloway, blending ’60s psychedelia, ’90s alt-rock, trip-hop and electronics. Second EP ‘Pollyanna’ (Broke Records) is out 30 October.",{note:HT+' There is no official London Calling page for Sandhouse, so this is a summary from press coverage.',url:'https://www.londoncalling.nl/artists/',official:false,hint:['Circus','Pollyanna','Snapdragon','Gasoline','Undefeated']}),
- A('knats','Knats','sat','small','16:20','16:50','jazz fusion',"Newcastle jazz outfit full of Geordie pride.",{note:HT,hint:['A Great Day In Newcastle']}),
- A('no-cigar','No Cigar','sat','small','18:30','19:00','psych rock · groove',"Five-piece from Aotearoa. Latest album: ‘Under The Surface’.",{hint:['Under The Surface']}),
- A('zoh-amba','Zoh Amba','sat','small','19:35','20:05','free jazz · Appalachian folk',"From New York’s avant-garde sax scene to guitar songs with Tennessee roots."),
- A('bloodsports','bloodsports','sat','small','20:35','21:05','post-punk',"Brooklyn post-punk. Debut: ‘Anything Can Be A Hammer’.",{hint:['Anything Can Be A Hammer']}),
- A('mx-lonely','MX Lonely','sat','small','21:40','22:10','shoegaze · noise rock',"Brooklyn trio fusing shoegaze with post-punk and noise rock."),
- A('lots-of-hands','lots of hands','sat','small','23:00','23:30','indie folk · electronics',"Newcastle duo. Debut: ‘into a pretty room’.",{hint:['into a pretty room']}),
- A('tanzana','Tanzana','sat','small','00:05','00:35','trip-hop · alt-rock',"Glasgow band mixing moody trip-hop with alt-rock."),
- A('mouth-ulcers','Mouth Ulcers','sat','small','01:10','01:40','dark post-punk',"London quartet in the lineage of Bauhaus and The Cure."),
- A('tokyo-tea-room','Tokyo Tea Room','sat','main','13:30','14:05','dream pop',"Margate dream pop. Debut album: ‘No Rush’.",{note:HT,hint:['No Rush']}),
- A('keiyaa','keiyaA','sat','main','14:35','15:10','experimental R&B',"New York artist making hazy, shape-shifting R&B.",{note:HT,hint:['Forever, Ya Girl','Hooke']}),
- A('momo-boyd','Momo Boyd','sat','main','15:40','16:20','cinematic R&B',"New York vocalist and producer, formerly of Infinity Song.",{note:HT}),
- A('sports','Sports','sat','main','19:00','19:35','warm indie pop',"Back with a self-produced, self-titled album of warm indie pop."),
- A('my-first-time','My First Time','sat','main','20:00','20:35','post-pop · guitars',"Bristol quartet: energetic guitar post-pop.",{hint:['Celebrity','Sippy Cup','Picture of Health','Much Better','Every Version Of You']}),
- A('the-gnomes','The Gnomes','sat','main','20:50','21:25','power pop · Merseybeat',"Frankston four-piece: Merseybeat and power pop."),
- A('angine-de-poitrine','Angine de Poitrine','sat','main','22:10','23:00','experimental · masked duo',"Canadian masked duo: pulsing drums and looped microtonal guitar.",{note:'Evening programme only: not included with a High Tea ticket.',hint:['Vol. I','Vol. II']}),
- A('sex-mask','Sex Mask','sat','main','23:30','00:05','post-punk · alt-rock',"Melbourne three-piece: post-punk and alt-rock."),
- A('cutouts','Cutouts','sat','main','00:35','01:10','darkwave · industrial',"Alex MacKay (Nation of Language)’s darkwave project."),
- A('tommy-wa','Tommy WÁ','sat','barlaeus','17:30','18:00','West African folk',"Nigerian-born, Ghana-based modern West African folk. On Dirty Hit.",{hint:['Roadman','Somewhere Only We Go']}),
- A('dermot-henry','Dermot Henry','sat','barlaeus','18:30','19:00','alt-folk',"23-year-old alt-folk artist with a Laurel Canyon feel.",{hint:['Aiming Torches','Little Rib','My Favourite Book']}),
- A('arima-ederra','Arima Ederra','sat','barlaeus','19:30','20:00','soul · folk · R&B',"LA singer-songwriter. Album: ‘A Rush To Nowhere’.",{hint:['A Rush To Nowhere']}),
- A('avery-friedman','Avery Friedman','sat','barlaeus','20:30','21:00','indie pop · folk',"Brooklyn songwriter. Debut: ‘New Thing’.",{hint:['New Thing']}),
+ // FRIDAY · Small Hall
+ A('sunday-mourners','Sunday Mourners','fri','small','18:35','19:05','post-punk · freak-folk',"Post-punk from college and childhood friends, mixing freak-folk with shades of Subway Sect and Television: flatwound strings, crisp cymbals, nervy energy."),
+ A('greg-mendez','Greg Mendez','fri','small','19:45','20:15','indie songwriter',"After fifteen years in obscurity, Greg Mendez releases ‘Beauty Land’ on Dead Oceans. Pop melodies and urgent guitars carry a narrator caught between cynicism and hope, grief and love. Recorded mostly in a dim Philadelphia room."),
+ A('hether','Hether','fri','small','20:50','21:20','genre-hopping guitar',"LA guitarist Paul Castelluzzo. He’s self-taught and genre-hopping, and has played everywhere from jazz bars to sessions with Britney Spears, Anderson .Paak and Paul McCartney. Signed to R&R Digital, loves vintage gear."),
+ A('robber-robber','Robber Robber','fri','small','22:00','22:30','post-punk · slacker rock',"Vermont quartet blending post-punk, slacker rock and noisy indie. Album ‘Two Wheels Move the Soul’ tackles displacement, economic pressure and emotional fatigue, yet it’s urgent, melodic and made to dance to."),
+ A('swapmeet','Swapmeet','fri','small','23:10','23:45','jangle · shoegaze · ’90s alt',"Adelaide four-piece mixing jangly indie, fuzzy shoegaze and ’90s alt-rock. They came out of the DIY scene, are signed to US label Winspear and are working on their debut album. Won Emerging Artist and Best Performance at SXSW Sydney."),
+ A('la-securite','La Sécurité','fri','small','00:20','00:50','art-punk · new wave',"Montreal collective playing high-energy art-punk (post-punk, new wave, krautrock) with playful Franglais lyrics and a riot grrrl ethos. Second album ‘Bingo!’ follows debut ‘Stay Safe!’."),
+ A('really-good-time','Really Good Time','fri','small','01:05','01:35','late-night closer',"No bio available yet.","The official Really Good Time page currently shows Robber Robber’s bio by mistake."),
+ // FRIDAY · Main Hall
+ A('zzzahara','Zzzahara','fri','main','18:00','18:35','lo-fi indie · slowcore',"LA artist making hazy lo-fi indie rock between dream pop, slowcore and bedroom pop. Latest album ‘Distant Lands’ deals with grief, addiction, family and ageing: melancholic, yet light."),
+ A('ulrika-spacek','Ulrika Spacek','fri','main','19:05','19:45','art-rock · electronics',"Fourth album ‘EXPO’ mixes uneasy electronics, fractured art-rock and blurred digital textures, about isolation and hyper-individualism. The five-piece works more like a project than a band. Playful, disorienting, intimate."),
+ A('cola','Cola','fri','main','20:15','20:50','minimalist indie rock',"Tim Darcy, Evan Cartwright and Ben Stidworthy. ‘C.O.L.A.’ (Cost of Living Adjustment) pairs minimalism with intricate detail: crisp rhythms, drifting melodies, and lyrics about uncertainty, nostalgia and modern absurdity."),
+ A('cardinals','Cardinals','fri','main','21:20','22:00','gothic shoegaze · folk-pop',"A six-piece from an Irish fishing town that started as a prank by two bored teens and is now part of Cork’s live scene. Led by Euan Manning, they blend pop with gothic shoegaze and Irish traditional folk."),
+ A('victoryland','Victoryland','fri','main','22:30','23:10','adventurous indie pop',"Brooklyn duo making adventurous indie pop with hooks, unusual guitar parts and electronics. Debut ‘My Heart Is A Room With No Cameras In It’ is about love, isolation and longing, and still makes you dance."),
+ A('lip-critic','Lip Critic','fri','main','23:45','00:20','maximalist post-hardcore',"Maximalist post-hardcore through punk, hardcore, hip-hop and electronics. ‘Theft World’ turns singer Bret Kaser’s identity theft into a chaotic concept record: noise, humour, catharsis."),
+ // FRIDAY · De Kring
+ A('katzpascale','KatzPascale','fri','kring','20:00','20:30','cello · sax · experimental pop',"New York duo merging post-punk, neo-classical and experimental pop. Cello, saxophone, loop pedals and voice swing between calm ambience and intense eruptions."),
+ A('tracey-nelson','Tracey Nelson','fri','kring','21:00','21:30','blues-tinged songwriter',"Laid-back, blues-tinged ‘trouble songs’. Debut album ‘Hercules’ was recorded in Asheville and includes ‘Just Shoot Me Now’ and ‘Dollys Coat’."),
+ A('raynor','Raynor','fri','kring','22:00','22:30','melodic indie pop',"A 19-year-old from a Zimbabwean family in Peterborough, making warm, melodic indie pop. He broke through on TikTok and signed to Safelight Records. Singles ‘Brighter Than Before’ and ‘Minute From the Moment’."),
+ // SATURDAY · Small Hall
+ A('fiona-lee','Fiona-Lee','sat','small','14:05','14:35','soaring indie rock',"Yorkshire indie rock with soaring vocals, sharp lyrics and expansive guitars. Songs about anxiety, relationships and identity, often compared to PJ Harvey and Florence Welch.",HT),
+ A('sandhouse','Sandhouse','sat','small','15:10','15:40','psych · trip-hop · alt-rock',"South London duo Anna Sutherland and Caspar Holloway, blending ’60s psychedelia, ’90s alt-rock, trip-hop and electronics. Second EP ‘Pollyanna’ (Broke Records) is out 30 October.",HT+' There is no official London Calling page for Sandhouse (yet), so this summary comes from press coverage.','https://www.londoncalling.nl/artists/'),
+ A('knats','Knats','sat','small','16:20','16:50','jazz fusion',"Newcastle jazz outfit full of Geordie pride, based in London since 2022. They sold out Jazz Re:freshed and have two albums: a self-titled debut on Gearbox and ‘A Great Day In Newcastle’ on Fontana.",HT),
+ A('no-cigar','No Cigar','sat','small','18:30','19:00','psych rock · groove',"Five-piece from Aotearoa mixing psych rock, indie and groove-heavy guitars. Latest album: ‘Under The Surface’."),
+ A('zoh-amba','Zoh Amba','sat','small','19:35','20:05','free jazz · Appalachian folk',"Started as a saxophonist in New York’s avant-garde scene and now writes guitar-driven songs with Tennessee roots: Appalachian folk, free jazz, blues and experimental rock."),
+ A('bloodsports','bloodsports','sat','small','20:35','21:05','post-punk',"Brooklyn post-punk: tense, jagged riffs and driving rhythms. Debut album ‘Anything Can Be A Hammer’."),
+ A('mx-lonely','MX Lonely','sat','small','21:40','22:10','shoegaze · noise rock',"Brooklyn trio fusing shoegaze with post-punk and noise rock, with an Elliott Smith-like ear for songs. Heavy, yet catchy."),
+ A('lots-of-hands','lots of hands','sat','small','23:00','23:30','indie folk · electronics',"Newcastle duo making indie folk with acoustic and electronic textures. Debut ‘into a pretty room’ is about friendship, grief and growing up."),
+ A('tanzana','Tanzana','sat','small','00:05','00:35','trip-hop · alt-rock',"Glasgow band (formed 2023) mixing moody trip-hop with alt-rock. Regulars at SWG3 and King Tut’s."),
+ A('mouth-ulcers','Mouth Ulcers','sat','small','01:10','01:40','dark post-punk',"London quartet playing dark post-punk in the lineage of Bauhaus and The Cure: deep vocals, tribal drums, sharp guitars. Moody yet danceable."),
+ // SATURDAY · Main Hall
+ A('tokyo-tea-room','Tokyo Tea Room','sat','main','13:30','14:05','dream pop',"Margate dream pop with hazy guitars and warm synths. Debut album ‘No Rush’.",HT),
+ A('keiyaa','keiyaA','sat','main','14:35','15:10','experimental R&B',"New York artist making hazy, shape-shifting R&B across neo-soul, jazz, folk and experimental electronics.",HT),
+ A('momo-boyd','Momo Boyd','sat','main','15:40','16:20','cinematic R&B',"New York vocalist, songwriter and producer with roots in gospel, jazz and classical. Formerly of Infinity Song, she now makes warm, cinematic solo R&B and has worked with Kendrick Lamar and Baby Keem.",HT),
+ A('sports','Sports','sat','main','19:00','19:35','warm indie pop',"A decade after their breakthrough, Sports are back to making music for the joy of it. A self-produced, self-titled album of warm, melodic indie pop."),
+ A('my-first-time','My First Time','sat','main','20:00','20:35','post-pop · guitars',"Bristol quartet playing energetic guitar post-pop with big hooks and sharp observations, in the vein of Blur and The Streets."),
+ A('the-gnomes','The Gnomes','sat','main','20:50','21:25','power pop · Merseybeat',"Four-piece from Frankston (Melbourne): Merseybeat, power pop and vintage rock in the vein of The Kinks and The Lemon Twigs."),
+ A('angine-de-poitrine','Angine de Poitrine','sat','main','22:10','23:00','experimental · masked duo',"Canadian duo blending rock, performance art and experimental music. Pulsing drums and looped microtonal guitar, performed anonymously in Dada-inspired masks.","Evening programme only: not included with a High Tea ticket."),
+ A('sex-mask','Sex Mask','sat','main','23:30','00:05','post-punk · alt-rock',"Melbourne three-piece whose post-punk and alt-rock feels like a dream or a half-remembered memory: deliberately vague and instinctive."),
+ A('cutouts','Cutouts','sat','main','00:35','01:10','darkwave · industrial',"Project of Brooklyn’s Alex MacKay (Nation of Language). Darkwave meets indie, industrial and electronics."),
+ // SATURDAY · Barlaeus
+ A('tommy-wa','Tommy WÁ','sat','barlaeus','17:30','18:00','West African folk',"Nigerian-born, Ghana-based artist modernising West African folk with shades of Bon Iver. Now on Dirty Hit."),
+ A('dermot-henry','Dermot Henry','sat','barlaeus','18:30','19:00','alt-folk',"A 23-year-old alt-folk artist with a Laurel Canyon feel, who went from busking in Paris to EP ‘Aiming Torches At The Sun’."),
+ A('arima-ederra','Arima Ederra','sat','barlaeus','19:30','20:00','soul · folk · R&B',"LA singer-songwriter whose album ‘A Rush To Nowhere’ blends soul, R&B, folk and pop, built from years of travel and voice notes."),
+ A('avery-friedman','Avery Friedman','sat','barlaeus','20:30','21:00','indie pop · folk',"Cleveland-born, Brooklyn-based songwriter. Debut ‘New Thing’ explores trauma and queerness."),
 ];
 
 const BYID = Object.fromEntries(ACTS.map(a=>[a.id,a]));
 const canHover = matchMedia('(hover:hover) and (pointer:fine)').matches;
 const $ = s=>document.querySelector(s);
 const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
-const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const norm=s=>String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/g,'');
-const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const toMin=t=>{const[h,m]=t.split(':').map(Number);return (h<10?h+24:h)*60+m;};
 const fmt=m=>String(Math.floor(m/60)%24).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
 const ppm=()=>parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ppm'))||2;
-const dayBase=dk=>new Date(DAYS[dk].date+'T00:00:00+01:00').getTime();
+const dayBase=dk=>new Date(DAYS[dk].date+'T00:00:00+01:00').getTime(); // CET (DST ended 25 Oct)
 const abs=(a,hm)=>dayBase(a.day)+toMin(hm)*60000;
 const urlOf=a=>a.url||`https://www.londoncalling.nl/artists/${a.id}/`;
 const byStart=(a,b)=>toMin(a.s)-toMin(b.s);
 const overlap=(a,b)=>a.day===b.day&&toMin(a.s)<toMin(b.e)&&toMin(b.s)<toMin(a.e);
-const paint=(n,st)=>{n.style.setProperty('--c',st.c);n.style.setProperty('--cs',st.cs);n.style.setProperty('--ch',st.ch);};
-const paras=t=>t.split(/\n{2,}/).map(p=>`<p>${esc(p)}</p>`).join('');
-const lsGet=k=>{try{return JSON.parse(localStorage.getItem(k));}catch(e){return null;}};
-const lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}};
+const paint=(node,st)=>{node.style.setProperty('--c',st.c);node.style.setProperty('--cs',st.cs);node.style.setProperty('--ch',st.ch);};
 
-/* ---------- state ---------- */
+/* state */
 const KEY='lc34-picks', FKEY='lc34-friend';
-let picks=new Set((lsGet(KEY)||[]).filter(id=>BYID[id]));
-let friend=new Set((lsGet(FKEY)||[]).filter(id=>BYID[id]));
+const load=k=>{try{return JSON.parse(localStorage.getItem(k)||'[]');}catch(e){return [];}};
+let picks=new Set(load(KEY).filter(id=>BYID[id]));
+let friend=new Set(load(FKEY).filter(id=>BYID[id]));
 const hm=location.hash.match(/picks=([^&]*)/);
-if(hm){friend=new Set(decodeURIComponent(hm[1]).split(',').filter(id=>BYID[id]));lsSet(FKEY,[...friend]);history.replaceState(null,'',location.pathname+location.search);}
+if(hm){
+  friend=new Set(decodeURIComponent(hm[1]).split(',').filter(id=>BYID[id]));
+  localStorage.setItem(FKEY,JSON.stringify([...friend]));
+  history.replaceState(null,'',location.pathname+location.search); // keep home-screen URL clean
+}
 let onlyPicks=false;
 const t0=Date.now();
 let view=(t0>=new Date('2026-10-31T06:00:00+01:00').getTime()&&t0<new Date('2026-11-01T08:00:00+01:00').getTime())?'sat':'fri';
-const save=()=>lsSet(KEY,[...picks]);
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify([...picks]));}catch(e){}};
 
 function clashMap(){
   const m=new Map(), p=ACTS.filter(a=>picks.has(a.id));
@@ -317,94 +309,21 @@ function clashMap(){
   return m;
 }
 
-/* ---------- official bios (loaded live, cached on device) ---------- */
-const bioKey=id=>'lc34-bio-'+id;
-function extractBio(md,a){
-  const lines=md.split('\n'), target=norm(a.name);
-  const i=lines.findIndex(l=>/^#{1,3}\s/.test(l)&&norm(l.replace(/^#+\s*/,''))===target);
-  if(i<0) return null;
-  const out=[];
-  for(let j=i+1;j<lines.length;j++){
-    let l=lines[j].trim();
-    if(!l) continue;
-    if(/^#{1,6}\s/.test(l)){ if(out.length) break; else continue; }
-    l=l.replace(/!
-￼ 
-]*\]￼ /g,'').replace(/
-￼ 
-]*)\]￼ /g,'$1').replace(/(\*\*|__)(.*?)\1/g,'$2').replace(/^[*\-]\s+/,'').trim();
-    if(!l) continue;
-    if(/mailing list|newsletter|subscribe|cookie|all rights reserved|©/i.test(l)) break;
-    if(l.length<40&&!/[.!?]$/.test(l)){ if(out.length) break; else continue; }
-    out.push(l);
-  }
-  const text=out.join('\n\n').trim();
-  if(text.length<60) return null;
-  const low=text.toLowerCase();
-  if(!low.includes(a.name.toLowerCase())&&ACTS.some(x=>x.id!==a.id&&low.includes(x.name.toLowerCase()))) return null; // wrong act's bio
-  return text;
-}
-async function loadBio(a){
-  if(a.official===false) return null;
-  const c=lsGet(bioKey(a.id)); if(c) return c.text;
-  const r=await fetch(READER+urlOf(a),{headers:{'Accept':'text/plain'}});
-  if(!r.ok) throw new Error('HTTP '+r.status);
-  const text=extractBio(await r.text(),a);
-  if(text) lsSet(bioKey(a.id),{text,t:Date.now()});
-  return text;
+function infoHTML(a){
+  const st=ST[a.stage], cl=clashMap(), off=OFFICIAL_BIOS[a.id];
+  const paras=(off||a.bio).split(/\n{2,}/).map(p=>`<p>${esc(p)}</p>`).join('');
+  return `<div class="k">${DAYS[a.day].short} · ${a.s}–${a.e} · ${st.name}</div>
+    <h3>${esc(a.name)}</h3><span class="tag">${a.tag}</span>${paras}
+    <div class="src">${off?'Bio: londoncalling.nl':'Short summary. Full bio on the official page'}</div>
+    ${a.note?`<div class="note">${a.note}</div>`:''}
+    ${picks.has(a.id)&&cl.has(a.id)?`<div class="warn">⚠ Clashes with ${cl.get(a.id).map(esc).join(', ')}</div>`:''}`;
 }
 
-/* ---------- top song via Apple Music (iTunes Search API) ---------- */
-const songKey=id=>'lc34-song-'+id;
-function jsonp(url){return new Promise((res,rej)=>{const cb='lcjp'+Math.random().toString(36).slice(2);const s=document.createElement('script');const done=()=>{delete window[cb];s.remove();};window[cb]=d=>{done();res(d);};s.onerror=()=>{done();rej(new Error('jsonp'));};s.src=url+'&callback='+cb;document.head.append(s);setTimeout(()=>{if(window[cb]){done();rej(new Error('timeout'));}},9000);});}
-async function itunes(term){
-  const u=`https://itunes.apple.com/search?term=${encodeURIComponent(term)}&entity=song&attribute=artistTerm&limit=50&country=NL`;
-  try{const r=await fetch(u);if(!r.ok)throw 0;return await r.json();}catch(e){return jsonp(u);}
-}
-async function findSong(a){
-  if(SONG_OVERRIDES[a.id]) return {override:true,artist:a.name,...SONG_OVERRIDES[a.id]};
-  const c=lsGet(songKey(a.id)); if(c) return c;
-  const data=await itunes(a.name);
-  const res=(data.results||[]).filter(r=>r.kind==='song'&&norm(r.artistName)===norm(a.name));
-  if(!res.length) return null;
-  const groups={}; res.forEach(r=>(groups[r.artistId]=groups[r.artistId]||[]).push(r));
-  let pick=null;
-  if(a.hint){const hs=a.hint.map(norm);pick=Object.values(groups).find(g=>g.some(r=>hs.some(h=>norm(r.collectionName||'').includes(h)||norm(r.trackName||'').includes(h))));}
-  if(!pick) pick=Object.values(groups).sort((x,y)=>y.length-x.length)[0];
-  const t=pick[0];
-  const song={track:t.trackName,artist:t.artistName,album:t.collectionName,apple:t.trackViewUrl,preview:t.previewUrl||null,art:(t.artworkUrl100||'').replace('100x100bb','300x300bb')};
-  lsSet(songKey(a.id),song);
-  return song;
-}
-const spotifyUrl=(a,s)=>s&&s.spotify?s.spotify:`https://open.spotify.com/search/${encodeURIComponent(s&&s.track?`${a.name} ${s.track}`:a.name)}`;
-const appleUrl=(a,s)=>s&&s.apple?s.apple:`https://music.apple.com/nl/search?term=${encodeURIComponent(a.name)}`;
-
-/* ---------- audio preview ---------- */
-let audio=null, audioFor=null;
-function stopAudio(){if(audio)audio.pause();audioFor=null;document.querySelectorAll('.art.playing').forEach(b=>b.classList.remove('playing'));}
-function playToggle(btn,a,s){
-  if(!audio){
-    audio=new Audio(); audio.preload='none'; audio.setAttribute('playsinline','');
-    audio.addEventListener('timeupdate',()=>{const bar=document.querySelector('#music .progress i');if(bar&&audio.duration)bar.style.width=(audio.currentTime/audio.duration*100)+'%';});
-    audio.addEventListener('ended',()=>document.querySelectorAll('.art.playing').forEach(b=>b.classList.remove('playing')));
-  }
-  if(audioFor===a.id&&!audio.paused){audio.pause();btn.classList.remove('playing');return;}
-  if(audioFor!==a.id){audio.src=s.preview;audioFor=a.id;}
-  audio.play().then(()=>btn.classList.add('playing')).catch(()=>toast('Couldn’t play the preview'));
-}
-
-/* ---------- desktop tooltip ---------- */
+/* desktop tooltip */
 const tip=$('#tip'); let tipFor=null;
-function headHTML(a){return `<div class="k">${DAYS[a.day].short} · ${a.s}–${a.e} · ${ST[a.stage].name}</div><h3>${esc(a.name)}</h3><span class="tag">${a.tag}</span>`;}
-function extrasHTML(a){
-  const cl=clashMap();
-  return (a.note?`<div class="note">${a.note}</div>`:'')+(picks.has(a.id)&&cl.has(a.id)?`<div class="warn">⚠ Clashes with ${cl.get(a.id).map(esc).join(', ')}</div>`:'');
-}
 function showTip(a,b){
   tipFor={a,b}; paint(tip,ST[a.stage]);
-  const bio=(lsGet(bioKey(a.id))||{}).text, song=lsGet(songKey(a.id));
-  tip.innerHTML=headHTML(a)+(song?`<div class="song">♪ ${esc(song.track)}</div>`:'')+`<div class="bio">${paras(bio||a.bio)}</div>`+extrasHTML(a)+
-    `<div class="hint">${picks.has(a.id)?'★ Picked. Click to remove':'Click to ★ add'} · Right-click or ⌘/Ctrl-click for the full bio and music</div>`;
+  tip.innerHTML=infoHTML(a)+`<div class="hint">${picks.has(a.id)?'★ In your lineup. Click to remove':'Click to ★ add to your lineup'} · ⌘/Ctrl-click for the artist page</div>`;
   const r=b.getBoundingClientRect(), w=tip.offsetWidth, h=tip.offsetHeight;
   let x=r.right+10; if(x+w>innerWidth-12) x=r.left-w-10;
   let y=r.top;
@@ -415,48 +334,18 @@ function showTip(a,b){
 function hideTip(){tip.classList.remove('show');tipFor=null;}
 addEventListener('scroll',hideTip,{passive:true});
 
-/* ---------- detail sheet ---------- */
+/* touch bottom sheet */
 const sheet=$('#sheet'), sheetBg=$('#sheetBg'), sheetBody=$('#sheetBody');
-let sheetFor=null;
 function openSheet(a){
-  hideTip(); stopAudio(); sheetFor=a.id;
-  paint(sheet,ST[a.stage]); paint(sheetBody,ST[a.stage]);
-  const cached=(lsGet(bioKey(a.id))||{}).text;
-  sheetBody.innerHTML=headHTML(a)+
-    `<div class="music" id="music"><div class="meta"><b>Finding their most popular song…</b><span>Apple Music</span></div></div>
-     <div class="links"><a class="btn apple" id="lApple" target="_blank" rel="noopener" href="${appleUrl(a)}"> Apple Music</a><a class="btn spotify" id="lSpot" target="_blank" rel="noopener" href="${spotifyUrl(a)}">● Spotify</a></div>
-     <div class="bio" id="bio">${paras(cached||a.bio)}</div><div class="src" id="biosrc">${cached?'Official bio · londoncalling.nl':''}</div>`+
-    extrasHTML(a)+
-    `<div class="row"><button class="btn pick"></button><a class="btn" target="_blank" rel="noopener" href="${urlOf(a)}">Artist page ↗</a></div>`;
+  hideTip(); paint(sheet,ST[a.stage]); paint(sheetBody,ST[a.stage]);
+  sheetBody.innerHTML=infoHTML(a)+`<div class="row"><button class="btn pick"></button><a class="btn" target="_blank" rel="noopener" href="${urlOf(a)}">Artist page ↗</a></div>`;
   const pb=sheetBody.querySelector('.pick');
   const upd=()=>{const on=picks.has(a.id);pb.textContent=on?'✓ Picked (tap to remove)':'★ Add to my lineup';pb.classList.toggle('primary',!on);};
   upd(); pb.onclick=()=>{toggle(a.id);upd();if(view==='mine')render();};
   sheet.scrollTop=0; sheet.classList.add('show'); sheetBg.classList.add('show');
   document.documentElement.style.overflow='hidden';
-  fillMusic(a); if(!cached) fillBio(a);
 }
-async function fillMusic(a){
-  let s=null; try{s=await findSong(a);}catch(e){}
-  if(sheetFor!==a.id) return;
-  const m=$('#music');
-  $('#lApple').href=appleUrl(a,s); $('#lSpot').href=spotifyUrl(a,s);
-  if(!s){m.innerHTML=`<div class="meta"><b>Listen to ${esc(a.name)}</b><span>Couldn’t find a song automatically. Use the buttons below to search.</span></div>`;return;}
-  if(s.override){m.innerHTML=`<div class="meta"><b>${esc(s.track||'Your chosen song')}</b><span>Your pick (override)</span></div>`;return;}
-  m.innerHTML=`<button class="art" ${s.preview?'':'disabled'} style="background-image:url('${s.art}')" aria-label="Play preview"></button>
-    <div class="meta"><b>${esc(s.track)}</b><span>Most popular on Apple Music${s.preview?' · tap for a 30-sec preview':''}</span><div class="progress"><i></i></div></div>`;
-  const btn=m.querySelector('.art'); if(s.preview) btn.onclick=()=>playToggle(btn,a,s);
-}
-async function fillBio(a){
-  const src=$('#biosrc');
-  if(a.official===false){src.textContent='Summary (no official bio available)';return;}
-  src.textContent='Loading the official bio…';
-  try{
-    const t=await loadBio(a); if(sheetFor!==a.id) return;
-    if(t){$('#bio').innerHTML=paras(t);src.textContent='Official bio · londoncalling.nl';}
-    else src.textContent='Summary. The official page has no usable bio.';
-  }catch(e){ if(sheetFor===a.id) src.textContent='Summary. Couldn’t load the official bio (offline?). Try again later.'; }
-}
-function closeSheet(){stopAudio();sheetFor=null;sheet.classList.remove('show');sheetBg.classList.remove('show');document.documentElement.style.overflow='';}
+function closeSheet(){sheet.classList.remove('show');sheetBg.classList.remove('show');document.documentElement.style.overflow='';}
 sheetBg.onclick=closeSheet;
 addEventListener('keydown',e=>{if(e.key==='Escape'){closeSheet();hideTip();}});
 let sy=null;
@@ -482,12 +371,10 @@ function refreshMarks(){
   $('#count').textContent=picks.size;
 }
 
-/* ---------- timetable grid ---------- */
+/* timetable grid */
 function renderGrid(dk){
   const d=DAYS[dk], g0=toMin(d.start), g1=toMin(d.end), P=ppm(), H=(g1-g0)*P;
-  $('#app').append(el('div','legend',canHover
-    ?`<span><b>Hover</b> for the bio</span><span><b>Click</b> to ★ it</span><span><b>Right-click</b> for music</span><span><b>Dashed</b> = shared lineup</span>`
-    :`<span><b>Tap</b> an act for the bio, music and ★</span><span><b>Dashed</b> = shared lineup</span><span><b>CLASH</b> = overlapping picks</span>`));
+  $('#app').append(el('div','legend',`<span><b>${canHover?'Hover':'Tap'}</b> an act for its bio</span><span><b>${canHover?'Click':'Tap → Add'}</b> to ★ it</span><span><b>Dashed</b> = in a shared lineup</span><span><b>CLASH</b> = overlaps another pick</span>`));
   const grid=el('div','grid'); grid.style.setProperty('--cols',d.stages.length);
   grid.append(el('div','corner'));
   d.stages.forEach(sid=>{const st=ST[sid];const h=el('div','stage-h',`<b>${st.name}</b><span>${st.sub}</span>`);paint(h,st);grid.append(h);});
@@ -498,8 +385,14 @@ function renderGrid(dk){
   d.stages.forEach((sid,ci)=>{
     const st=ST[sid], col=el('div','col'); col.style.height=H+'px'; paint(col,st);
     for(let t=Math.ceil(g0/30)*30;t<=g1;t+=30){const ln=el('div',t%60?'ln half':'ln');ln.style.top=(t-g0)*P+'px';col.append(ln);}
-    (d.bands||[]).filter(b=>b.stages.includes(sid)).forEach(b=>{const bd=el('div','band',`<span>${b.label}</span>`);bd.style.top=(toMin(b.s)-g0)*P+'px';bd.style.height=(toMin(b.e)-toMin(b.s))*P+'px';col.append(bd);});
-    (d.events||[]).filter(ev=>ev.stage===sid).forEach(ev=>{const e=el('div','event',`<b>${ev.title}</b><span>${ev.sub}</span>`);e.style.top=((toMin(ev.s)-g0)*P+1)+'px';e.style.height=((toMin(ev.e)-toMin(ev.s))*P-3)+'px';col.append(e);});
+    (d.bands||[]).filter(b=>b.stages.includes(sid)).forEach(b=>{
+      const bd=el('div','band',`<span>${b.label}</span>`);
+      bd.style.top=(toMin(b.s)-g0)*P+'px'; bd.style.height=(toMin(b.e)-toMin(b.s))*P+'px'; col.append(bd);
+    });
+    (d.events||[]).filter(ev=>ev.stage===sid).forEach(ev=>{
+      const e=el('div','event',`<b>${ev.title}</b><span>${ev.sub}</span>`);
+      e.style.top=((toMin(ev.s)-g0)*P+1)+'px'; e.style.height=((toMin(ev.e)-toMin(ev.s))*P-3)+'px'; col.append(e);
+    });
     ACTS.filter(a=>a.day===dk&&a.stage===sid).forEach(a=>col.append(block(a,g0,P)));
     if(showNow){const n=el('div','now',ci===0?'<em>now</em>':'');n.style.top=(nowM-g0)*P+'px';col.append(n);}
     grid.append(col);
@@ -518,13 +411,12 @@ function block(a,g0,P){
     b.addEventListener('mouseleave',hideTip);
     b.addEventListener('focus',()=>showTip(a,b));
     b.addEventListener('blur',hideTip);
-    b.addEventListener('click',ev=>{if(ev.metaKey||ev.ctrlKey){openSheet(a);return;}toggle(a.id);});
-    b.addEventListener('contextmenu',ev=>{ev.preventDefault();openSheet(a);});
+    b.addEventListener('click',ev=>{if(ev.metaKey||ev.ctrlKey){window.open(urlOf(a),'_blank');return;}toggle(a.id);});
   } else b.addEventListener('click',()=>openSheet(a));
   return b;
 }
 
-/* ---------- my lineup ---------- */
+/* my lineup */
 function itemRow(a,cl,mode){
   const st=ST[a.stage], it=el('div','item'); paint(it,st);
   it.innerHTML=`<div class="tm">${a.s}–${a.e}</div>
@@ -532,24 +424,26 @@ function itemRow(a,cl,mode){
     <div class="st"><span class="chip"></span>${st.name} · ${a.tag}</div>
     ${mode==='mine'&&cl.has(a.id)?`<div class="warn">⚠ Overlaps with ${cl.get(a.id).map(esc).join(', ')}</div>`:''}</div>
     <button class="x" aria-label="${mode==='mine'?'Remove':'Add'}">${mode==='mine'?'×':'+'}</button>`;
-  it.querySelector('.nm').onclick=()=>openSheet(a);
-  it.querySelector('.x').onclick=()=>{mode==='mine'?picks.delete(a.id):picks.add(a.id);save();render();renderNext();};
+  it.querySelector('.nm').onclick=()=>canHover?window.open(urlOf(a),'_blank'):openSheet(a);
+  it.querySelector('.x').onclick=()=>{mode==='mine'?picks.delete(a.id):picks.add(a.id);save();render();};
   return it;
 }
 function renderMine(){
-  const bar=el('div','minebar',`<button class="btn primary" data-a="share">↗ Share link</button><button class="btn" data-a="pdf">⤓ Save PDF</button><button class="btn" data-a="text">⧉ Copy as text</button><button class="btn" data-a="offline">☁︎ Save offline</button>`);
+  const bar=el('div','minebar',`<button class="btn primary" data-a="share">↗ Share link</button><button class="btn" data-a="text">⧉ Copy as text</button><button class="btn" data-a="print">⎙ Print</button>`);
   bar.querySelector('[data-a=share]').onclick=share;
-  bar.querySelector('[data-a=pdf]').onclick=savePDF;
   bar.querySelector('[data-a=text]').onclick=async()=>{await copy(lineupText());toast('Lineup copied as text');};
-  bar.querySelector('[data-a=offline]').onclick=e=>saveOffline(e.currentTarget);
+  bar.querySelector('[data-a=print]').onclick=()=>print();
   const wrap=el('div','mine'), cl=clashMap();
   ['fri','sat'].forEach(dk=>{
     const card=el('section','daycard'); card.append(el('h2',null,DAYS[dk].long));
     const mine=ACTS.filter(a=>a.day===dk&&picks.has(a.id)).sort(byStart);
     if(!mine.length){const e=el('div','empty',`Nothing picked yet. <a href="#">Open the ${DAYS[dk].short} timetable →</a>`);e.querySelector('a').onclick=ev=>{ev.preventDefault();view=dk;render();scrollTo({top:0});};card.append(e);}
     mine.forEach((a,i)=>{
-      if(i){const p=mine[i-1],gap=toMin(a.s)-toMin(p.e),mv=ST[p.stage].venue!==ST[a.stage].venue;
-        if(gap>=15||mv) card.append(el('div','gapline',`· ${Math.max(gap,0)} min free${mv?` · change venue → ${ST[a.stage].venue}`:''}`));}
+      if(i){
+        const prev=mine[i-1], gap=toMin(a.s)-toMin(prev.e);
+        const move=ST[prev.stage].venue!==ST[a.stage].venue?` · change venue → ${ST[a.stage].venue}`:'';
+        if(gap>=15||move) card.append(el('div','gapline',`· ${Math.max(gap,0)} min free${move}`));
+      }
       card.append(itemRow(a,cl,'mine'));
     });
     const fo=ACTS.filter(a=>a.day===dk&&friend.has(a.id)&&!picks.has(a.id)).sort(byStart);
@@ -559,113 +453,8 @@ function renderMine(){
   $('#app').append(bar,wrap);
   $('#count').textContent=picks.size;
 }
-async function saveOffline(btn){
-  btn.disabled=true; let n=0, bios=0;
-  for(const a of ACTS){
-    n++; btn.textContent=`☁︎ Saving ${n}/${ACTS.length}…`;
-    try{ if(!lsGet(songKey(a.id))) await findSong(a); }catch(e){}
-    if(a.official!==false&&!lsGet(bioKey(a.id))){
-      try{ if(await loadBio(a)) bios++; await sleep(3200); }
-      catch(e){ if(String(e).includes('429')){ await sleep(20000); try{ if(await loadBio(a)) bios++; }catch(_){} } }
-    } else if(lsGet(bioKey(a.id))) bios++;
-  }
-  btn.disabled=false; btn.textContent='✓ Saved offline';
-  toast(`Saved ${bios} bios + songs on this device`);
-}
 
-/* ---------- PDF ---------- */
-function loadJsPDF(){
-  if(window.jspdf) return Promise.resolve(window.jspdf.jsPDF);
-  return new Promise((res,rej)=>{const s=document.createElement('script');s.src=JSPDF;s.onload=()=>res(window.jspdf.jsPDF);s.onerror=rej;document.head.append(s);});
-}
-function buildPDF(J){
-  const doc=new J({unit:'mm',format:'a4'}), W=210, H=297, M=12, cl=clashMap();
-  const head=(title,sub)=>{
-    doc.setFillColor(14,14,12);doc.rect(0,0,W,28,'F');
-    doc.setFont('helvetica','bolditalic');doc.setFontSize(24);doc.setTextColor(255,255,255);doc.text(title,M,16);
-    doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(200,220,60);doc.text(sub,M,23);
-    doc.setFillColor(255,77,58);doc.circle(W-M-7,14,7,'F');
-    doc.setFont('helvetica','bolditalic');doc.setFontSize(11);doc.setTextColor(255,255,255);doc.text('34',W-M-7,15.8,{align:'center'});
-  };
-  const foot=()=>{doc.setFont('helvetica','normal');doc.setFontSize(7);doc.setTextColor(150,150,140);
-    doc.text('Unofficial planner · times: londoncalling.nl/timetable · made '+new Date().toLocaleDateString('nl-NL'),M,H-6);};
-  head('MY LONDON CALLING','30 + 31 October 2026 · Paradiso · De Kring · Barlaeus Gymnasium');
-  let y=42;
-  const newPage=()=>{foot();doc.addPage();head('MY LONDON CALLING','continued');y=42;};
-  ['fri','sat'].forEach(dk=>{
-    const m=ACTS.filter(a=>a.day===dk&&picks.has(a.id)).sort(byStart);
-    if(y>245) newPage();
-    doc.setFont('helvetica','bolditalic');doc.setFontSize(14);doc.setTextColor(14,14,12);doc.text(DAYS[dk].long.toUpperCase(),M,y);
-    doc.setDrawColor(200,220,60);doc.setLineWidth(.8);doc.line(M,y+2.2,W-M,y+2.2);y+=10;
-    if(!m.length){doc.setFont('helvetica','italic');doc.setFontSize(10);doc.setTextColor(120);doc.text('No acts picked.',M,y);y+=14;return;}
-    m.forEach((a,i)=>{
-      if(i){const p=m[i-1],gap=toMin(a.s)-toMin(p.e),mv=ST[p.stage].venue!==ST[a.stage].venue;
-        if(gap>=15||mv){doc.setFont('helvetica','italic');doc.setFontSize(8);doc.setTextColor(130,130,120);
-          doc.text(`${Math.max(gap,0)} min free${mv?' · walk to '+ST[a.stage].venue:''}`,M+38,y-1);y+=4.5;}}
-      if(y>272) newPage();
-      doc.setFillColor(...ST[a.stage].rgb);doc.rect(M,y-4.3,1.8,6.2,'F');
-      doc.setFont('courier','bold');doc.setFontSize(10);doc.setTextColor(14,14,12);doc.text(`${a.s}-${a.e}`,M+4,y);
-      doc.setFont('helvetica','bold');doc.setFontSize(12);doc.text(a.name,M+38,y);
-      doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(110,110,100);
-      doc.text(ST[a.stage].venue==='Paradiso'?`${ST[a.stage].name} · Paradiso`:ST[a.stage].name,W-M,y,{align:'right'});
-      y+=5;
-      if(cl.has(a.id)){doc.setFontSize(8);doc.setTextColor(220,60,40);doc.text('Clashes with '+cl.get(a.id).join(', '),M+38,y);y+=4;}
-      y+=3.5;
-    });
-    y+=8;
-  });
-  foot();
-  ['fri','sat'].forEach(dk=>{
-    doc.addPage(); const d=DAYS[dk];
-    head(d.long.toUpperCase(),'Timetable · your picks highlighted');
-    const top=44,bot=H-14,g0=toMin(d.start),g1=toMin(d.end),k=(bot-top)/(g1-g0);
-    const gx=M+11,gap=3,cw=(W-M-gx-2*gap)/3,X=i=>gx+i*(cw+gap),Y=t=>top+(toMin(t)-g0)*k;
-    (d.bands||[]).forEach(b=>b.stages.forEach(sid=>{const i=d.stages.indexOf(sid);doc.setFillColor(244,246,232);doc.rect(X(i),Y(b.s),cw,Y(b.e)-Y(b.s),'F');
-      doc.setFont('helvetica','bold');doc.setFontSize(6);doc.setTextColor(160,165,130);doc.text(b.label.toUpperCase(),X(i)+1.5,Y(b.e)-1.5);}));
-    for(let t=Math.ceil(g0/30)*30;t<=g1;t+=30){const yy=top+(t-g0)*k;doc.setDrawColor(t%60?236:212);doc.setLineWidth(.2);doc.line(gx,yy,W-M,yy);
-      if(t%60===0){doc.setFont('courier','normal');doc.setFontSize(7);doc.setTextColor(120);doc.text(fmt(t),M,yy+1);}}
-    d.stages.forEach((sid,i)=>{doc.setFont('helvetica','bolditalic');doc.setFontSize(10);doc.setTextColor(14,14,12);doc.text(ST[sid].name.toUpperCase(),X(i),36);
-      doc.setFillColor(...ST[sid].rgb);doc.rect(X(i),38,cw,1.6,'F');});
-    (d.events||[]).forEach(ev=>{const i=d.stages.indexOf(ev.stage),y0=Y(ev.s),h=Y(ev.e)-y0;
-      doc.setDrawColor(170);doc.setLineDashPattern([1,1],0);doc.roundedRect(X(i),y0+.3,cw,h-.6,1.5,1.5,'S');doc.setLineDashPattern([],0);
-      doc.setFont('helvetica','bolditalic');doc.setFontSize(7);doc.setTextColor(120);doc.text(ev.title.toUpperCase(),X(i)+2,y0+3.6);});
-    ACTS.filter(a=>a.day===dk).forEach(a=>{
-      const i=d.stages.indexOf(a.stage),y0=Y(a.s)+.3,h=Y(a.e)-Y(a.s)-.6,on=picks.has(a.id);
-      if(on){doc.setFillColor(...ST[a.stage].rgb);doc.roundedRect(X(i),y0,cw,h,1.5,1.5,'F');}
-      else{doc.setFillColor(249,249,245);doc.setDrawColor(214,214,204);doc.setLineWidth(.2);doc.roundedRect(X(i),y0,cw,h,1.5,1.5,'FD');}
-      const fs=h>12?10:h>8?8.5:7.5, base=y0+fs*.36+1.3;
-      doc.setTextColor(on?14:105);doc.setFont('helvetica','bold');doc.setFontSize(fs);
-      doc.text(doc.splitTextToSize(a.name,cw-4)[0],X(i)+2,base);
-      doc.setFont('courier','normal');doc.setFontSize(6.5);doc.text(`${a.s}-${a.e}`,X(i)+2,base+3);
-    });
-    foot();
-  });
-  return doc;
-}
-function deliverPDF(doc){
-  const name='london-calling-34-my-lineup.pdf', blob=doc.output('blob');
-  const file=new File([blob],name,{type:'application/pdf'});
-  if(!canHover&&navigator.canShare&&navigator.canShare({files:[file]})){
-    navigator.share({files:[file],title:'My London Calling lineup'}).catch(e=>{if(e.name!=='AbortError')downloadBlob(blob,name);});
-    return;
-  }
-  downloadBlob(blob,name);
-}
-function downloadBlob(blob,name){
-  const url=URL.createObjectURL(blob), a=document.createElement('a');
-  a.href=url;a.download=name;document.body.append(a);a.click();a.remove();
-  setTimeout(()=>URL.revokeObjectURL(url),60000);
-}
-function savePDF(){
-  if(!picks.size){toast('Pick some acts first ★');return;}
-  if(window.jspdf){deliverPDF(buildPDF(window.jspdf.jsPDF));return;} // synchronous: keeps the tap valid for the iOS share sheet
-  toast('Preparing PDF…');
-  loadJsPDF().then(J=>{const doc=buildPDF(J);
-    if(canHover) deliverPDF(doc); else toast('PDF ready. Tap Save PDF again');
-  }).catch(()=>toast('PDF needs a connection the first time'));
-}
-
-/* ---------- now / next ---------- */
+/* now / next bar (only during the festival) */
 function renderNext(){
   const nb=$('#nextbar'), t=Date.now();
   const live=t>=new Date('2026-10-30T17:00:00+01:00').getTime()&&t<new Date('2026-11-01T03:00:00+01:00').getTime();
@@ -677,7 +466,7 @@ function renderNext(){
   nb.classList.add('show'); setTB();
 }
 
-/* ---------- shared lineup ---------- */
+/* shared lineup banner */
 function renderBanner(){
   const bn=$('#banner');
   if(!friend.size){bn.classList.remove('show');return;}
@@ -687,6 +476,8 @@ function renderBanner(){
   $('#adopt').onclick=()=>{friend.forEach(id=>picks.add(id));save();render();toast('Added to your lineup');};
   $('#dismiss').onclick=()=>{friend.clear();localStorage.removeItem(FKEY);render();};
 }
+
+/* sharing */
 function lineupText(){
   let out='My London Calling lineup · 30+31 Oct 2026\n';
   ['fri','sat'].forEach(dk=>{
@@ -702,15 +493,15 @@ async function share(){
   if(!picks.size){toast('Pick some acts first ★');return;}
   const url=shareUrl();
   if(navigator.share){try{await navigator.share({title:'My London Calling lineup',text:lineupText(),url});return;}catch(e){if(e.name==='AbortError')return;}}
-  await copy(url); toast('Link copied');
+  await copy(url); toast('Link copied. Send it to your friends!');
 }
 async function copy(t){
   try{await navigator.clipboard.writeText(t);}
   catch(e){const ta=el('textarea');ta.value=t;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.append(ta);ta.select();ta.setSelectionRange(0,t.length);document.execCommand('copy');ta.remove();}
 }
-let tt; function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2400);}
+let tt; function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2200);}
 
-/* ---------- wiring ---------- */
+/* wiring */
 function setTB(){document.documentElement.style.setProperty('--tb',$('.top').offsetHeight+'px');}
 function render(){
   hideTip();
@@ -721,16 +512,15 @@ function render(){
 }
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{view=t.dataset.v;render();});
 $('#share').onclick=share;
-$('#pdf').onclick=savePDF;
 $('#only').onclick=()=>{onlyPicks=!onlyPicks;$('#only').classList.toggle('on',onlyPicks);refreshMarks();};
 $('#clear').onclick=()=>{if(picks.size&&confirm('Clear all your picks?')){picks.clear();save();render();renderNext();}};
-if(!canHover) $('#intro').textContent='Build your own lineup. Tap an act for its bio, top song and ★, then share your picks or save them as a PDF.';
+if(!canHover) $('#intro').textContent='Build your own lineup. Tap an act for its bio and add it to your picks, then share them.';
 let rw=innerWidth;
 addEventListener('resize',()=>{setTB();if(innerWidth!==rw){rw=innerWidth;if(view!=='mine')render();}});
 setTB(); render(); renderNext();
 setInterval(()=>{renderNext();if(view!=='mine'&&!tipFor&&!sheet.classList.contains('show'))render();},60000);
-setTimeout(()=>loadJsPDF().catch(()=>{}),2500); // preload so PDF works instantly (and offline)
 
+/* home-screen icon (generated) + offline support when hosted */
 (function(){
   const c=document.createElement('canvas');c.width=c.height=180;const x=c.getContext('2d');
   x.fillStyle='#c8dc3c';x.fillRect(0,0,180,180);
